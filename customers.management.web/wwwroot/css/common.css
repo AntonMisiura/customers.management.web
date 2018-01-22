@@ -1,0 +1,79 @@
+﻿body {
+}
+
+
+#navbar {
+    margin-top: -10px;
+    color: white;
+}
+
+.nav > li > a, .nav > li > a {
+    cursor: pointer;
+    color: white;
+}
+
+.nav li a, .nav li a {
+    cursor: pointer;
+    color: white;
+}
+
+    .nav li a:focus, .nav li a:hover {
+        background: none !important;
+    }
+
+.navbar-nav > li > .dropdown-menu a {
+    color: white;
+}
+
+.navbar-nav > li > .dropdown-menu {
+    background: linear-gradient(154deg, #008fe2 0, #00b29c 100%);
+}
+
+.nav .open > a, .nav .open > a:focus, .nav .open > a:hover {
+    background: none !important;
+}
+
+#navbarCustom {
+    padding-bottom: 5px !important;
+    min-height: 30px;
+    height: 30px;
+    background: linear-gradient(154deg, #008fe2 0, #00b29c 100%);
+}
+
+#navForLogout {
+    margin-top: -10px;
+}
+
+.navbar .navbar-nav > li > a {
+    padding: 0px 15px;
+}
+
+a > .fa-pencil:hover {
+    color: greenyellow;
+    cursor: pointer;
+}
+
+a > .fa-trash:hover {
+    color: red;
+    cursor: pointer;
+}
+
+.white-input-no-border {
+    border: none !important;
+    background-color: white !important;
+}
+
+    .white-input-no-border:focus {
+        border: none !important;
+        background-color: white !important;
+    }
+
+.table > thead > tr > th, .table > tbody > tr > td {
+    padding: 6px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+label {
+    margin-top: 5px!important;
+}

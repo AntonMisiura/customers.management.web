@@ -1,0 +1,15 @@
+E:\test_task\customers.management.web\customers.management.impl\bin\Debug\netcoreapp2.0\customers.management.impl.deps.json
+E:\test_task\customers.management.web\customers.management.impl\bin\Debug\netcoreapp2.0\customers.management.impl.dll
+E:\test_task\customers.management.web\customers.management.impl\bin\Debug\netcoreapp2.0\customers.management.impl.pdb
+E:\test_task\customers.management.web\customers.management.impl\bin\Debug\netcoreapp2.0\customers.management.core.dll
+E:\test_task\customers.management.web\customers.management.impl\bin\Debug\netcoreapp2.0\Microsoft.EntityFrameworkCore.dll
+E:\test_task\customers.management.web\customers.management.impl\bin\Debug\netcoreapp2.0\Microsoft.Extensions.Configuration.Abstractions.dll
+E:\test_task\customers.management.web\customers.management.impl\bin\Debug\netcoreapp2.0\customers.management.core.pdb
+E:\test_task\customers.management.web\customers.management.impl\bin\Debug\netcoreapp2.0\Microsoft.EntityFrameworkCore.xml
+E:\test_task\customers.management.web\customers.management.impl\bin\Debug\netcoreapp2.0\Microsoft.Extensions.Configuration.Abstractions.xml
+E:\test_task\customers.management.web\customers.management.impl\obj\Debug\netcoreapp2.0\customers.management.impl.csprojResolveAssemblyReference.cache
+E:\test_task\customers.management.web\customers.management.impl\obj\Debug\netcoreapp2.0\customers.management.impl.csproj.CoreCompileInputs.cache
+E:\test_task\customers.management.web\customers.management.impl\obj\Debug\netcoreapp2.0\customers.management.impl.AssemblyInfoInputs.cache
+E:\test_task\customers.management.web\customers.management.impl\obj\Debug\netcoreapp2.0\customers.management.impl.AssemblyInfo.cs
+E:\test_task\customers.management.web\customers.management.impl\obj\Debug\netcoreapp2.0\customers.management.impl.dll
+E:\test_task\customers.management.web\customers.management.impl\obj\Debug\netcoreapp2.0\customers.management.impl.pdb

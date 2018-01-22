@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html ng-app="CustomersApp">
+<head>
+	<meta charset="utf-8" />
+	<title>Customers Management</title>
+
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+		  integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+		  crossorigin="anonymous" />
+	<link rel="stylesheet"
+		  href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.5/angular-material.min.css" />
+	<link href="css/bootstrap.min.css" rel="stylesheet" />
+	<link href="css/paper-dashboard.css" rel="stylesheet" />
+	<link href="css/common.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div ng-cloak>
+		<nav id="navbarCustom" class="navbar navbar-fixed-top">
+			<div class="container-fluid">
+				<ul class="nav navbar-nav" id="navbar" style="font-size:10pt;">
+					<li>
+						<a href="#!general">General Info</a>
+					</li>
+					<li>
+						<a href="#!users">Users</a>
+					</li>
+					<li>
+						<a href="#!departments">Departments</a>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right" id="navForLogout" style="font-size:10pt;">
+					<li>
+						<a>Logout</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+
+	<div ng-view=""></div>
+	<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+			crossorigin="anonymous"></script>
+	<script src="scripts/angular.js"></script>
+	<script src="scripts/angular-route.js"></script>
+	<script src="scripts/bootstrap.min.js"></script>
+	<script src="scripts/angular-animate.min.js"></script>
+	<script src="scripts/angular-aria.min.js"></script>
+	<script src="scripts/angular-messages.min.js"></script>
+	<script src="scripts/angular-resource.js"></script>
+	<!-- Angular Material Library -->
+	<script src="scripts/angular-material.min.js"></script>
+	<!-- App scripts -->
+	<script src="scripts/app.js"></script>
+	<script src="scripts/route.js"></script>
+	<script src="scripts/controllers/generalController.js"></script>
+	<script src="scripts/controllers/addCustomerController.js"></script>
+	<script src="scripts/controllers/customerEditController.js"></script>
+	<script src="scripts/controllers/addContactController.js"></script>
+	<script src="scripts/controllers/contactEditController.js"></script>
+	<script src="scripts/controllers/departmentController.js"></script>
+	<script src="scripts/controllers/addDepartmentController.js"></script>
+	<script src="scripts/controllers/departmentEditController.js"></script>
+	<script src="scripts/controllers/userController.js"></script>
+	<script src="scripts/controllers/addUserController.js"></script>
+	<script src="scripts/controllers/userEditController.js"></script>
+	<script src="scripts/controllers/loginController.js"></script>
+	<script src="scripts/customerService.js"></script>
+
+</body>
+</html>

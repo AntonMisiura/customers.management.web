@@ -1,0 +1,93 @@
+﻿<div ng-controller="userEditController">
+	<div class="row" style="margin-right: 15px; margin-left: 15px; margin-top: 50px;">
+		<div class="col-md-12">
+			<div class="card" style="min-height: 300px!important;">
+				<div class="card-header">
+					<div class="pull-right">
+
+					</div>
+					<h4 class="card-title">User Edit</h4>
+				</div>
+				<div class="card-content" style="padding: 0 15px 10px 15px;">
+					<div class="row">
+						<div class="col-md-12" style="margin-top: 50px;">
+							<form class="form-group" style="text-align: center;">
+								<div class="form-inline">
+									<div class="form-group">
+										<label for="userName">Name</label>
+									</div>
+									<div class="form-group">
+										<input type="text" class="form-control white-input-no-border" id="userName"
+											   ng-model="editable.Name" />
+									</div>
+								</div>
+								<div class="form-inline">
+									<div class="form-group">
+										<label for="userEmail">Email</label>
+									</div>
+									<div class="form-group">
+										<input type="text" class="form-control white-input-no-border" id="userEmail"
+											   ng-model="editable.Email" />
+									</div>
+								</div>
+								<div class="form-inline">
+									<div class="form-group">
+										<label for="userMobile">Mobile</label>
+									</div>
+									<div class="form-group">
+										<input type="text" class="form-control white-input-no-border" id="userMobile"
+											   ng-model="editable.Mobile" />
+									</div>
+								</div>
+								<div class="form-inline">
+									<div class="form-group">
+										<label for="userLogin">UserName</label>
+									</div>
+									<div class="form-group">
+										<input type="text" class="form-control white-input-no-border" id="userLogin"
+											   ng-model="editable.UserName" />
+									</div>
+								</div>
+								<div class="form-inline">
+									<div class="form-group">
+										<label for="userPassword">Password</label>
+									</div>
+									<div class="form-group">
+										<input type="text" class="form-control white-input-no-border" id="userPassword"
+										       ng-model="editable.Password" />
+									</div>
+									
+									<div class="form-inline">
+										<div class="form-group">
+											<label for="userDepartment">Department</label>
+										</div>
+										<div class="form-group">
+											<select id="userDepartment"
+											        ng-model="added.Department"
+											        ng-init="getCustomerAvailableDepartments(1);">												
+												<option ng-repeat="dep in currentUserDepartments"
+												        value="{{dep}}">
+													{{dep.Name}}
+												</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="form-inline" style="margin-top: 10px;">
+									<button class="btn btn-success btn-fill btn-sm"
+											ng-click="apply();">
+										Apply
+									</button>
+									<button class="btn btn-danger btn-fill btn-sm"
+											ng-click="cancel();">
+										Cancel
+									</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
