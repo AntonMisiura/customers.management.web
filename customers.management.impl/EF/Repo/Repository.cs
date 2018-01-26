@@ -18,44 +18,37 @@ namespace customers.management.impl.EF.Repo
             Context = context;
         }
 
-        public T GetById(CancellationToken token, int id)
+        public T GetById(int id)
         {
             return Context.Set<T>().FirstOrDefault(e => e.Id == id);
         }
 
-        public IEnumerable<T> GetByCustomerId(CancellationToken token, int id)
-        {
-            var selected = Context.Set<T>().Where(e => e.Id == id);
-
-            return selected;
-        }
-
-        public IEnumerable<T> GetAll(CancellationToken token)
+        public List<T> GetAll()
         {
             return Context.Set<T>().ToList();
         }
 
-        public void Add(CancellationToken token, T t)
+        public void Add(T t)
         {
             if (t != null)
             {
                 Context.Set<T>().Add(t);
             }
 
-            Save(token);
+            Save();
         }
 
-        public void Edit(CancellationToken token, T t)
+        public void Edit(T t)
         {
-            var editable = GetById(token, t.Id);
+            var editable = GetById(t.Id);
             Context.Set<T>().Update(editable);
 
-            Save(token);
+            Save();
         }
 
-        public void Delete(CancellationToken token, int id)
+        public void Delete(int id)
         {
-            var entity = GetById(token, id);
+            var entity = GetById(id);
 
             try
             {
@@ -65,7 +58,7 @@ namespace customers.management.impl.EF.Repo
                 }
 
                 Context.Set<T>().Remove(entity);
-                Save(token);
+                Save();
             }
             catch (DbException dbEx)
             {
@@ -73,7 +66,7 @@ namespace customers.management.impl.EF.Repo
             }
         }
 
-        public void Save(CancellationToken token)
+        public void Save()
         {
             Context.SaveChanges();
         }

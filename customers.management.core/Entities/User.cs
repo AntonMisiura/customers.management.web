@@ -19,10 +19,5 @@ namespace customers.management.core.Entities
         public string Password { get; set; }
 
         public Department Department { get; set; }
-
-        public User()
-        {
-            Password = Password.CreateHash();
-        }
     }
 }

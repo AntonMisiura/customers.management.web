@@ -7,18 +7,40 @@ namespace customers.management.core.Contracts
 {
     public interface IRepository<T>
     {
-        T GetById(CancellationToken token, int id);
+        /// <summary>
+        /// get certain entity by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        T GetById(int id);
 
-        IEnumerable<T> GetByCustomerId(CancellationToken token, int id);
+        /// <summary>
+        /// get all items
+        /// </summary>
+        /// <returns></returns>
+        List<T> GetAll();
 
-        IEnumerable<T> GetAll(CancellationToken token);
+        /// <summary>
+        /// add certain entity
+        /// </summary>
+        /// <param name="t"></param>
+        void Add(T t);
 
-        void Add(CancellationToken token, T t);
-
-        void Edit(CancellationToken token, T t);
+        /// <summary>
+        /// edit certain entity
+        /// </summary>
+        /// <param name="t"></param>
+        void Edit(T t);
         
-        void Save(CancellationToken token);
+        /// <summary>
+        /// save changes
+        /// </summary>
+        void Save();
 
-        void Delete(CancellationToken token, int id);
+        /// <summary>
+        /// delete certain entity by id
+        /// </summary>
+        /// <param name="id"></param>
+        void Delete(int id);
     }
 }

@@ -1,69 +1,122 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
 using customers.management.core.Contracts;
 using customers.management.core.Entities;
 using customers.management.core.Security;
+using customers.management.web.Models;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 namespace customers.management.web.Controllers
 {
-    [Authorize(Policy = "RequireAdminRole")]
+    [Route("[controller]/[action]")]
     public class UserController : Controller
     {
-        private IUserRepository _repository;
+        private IUserService _userService;
+        public IConfiguration Configuration { get; }
 
-        public UserController(IUserRepository repository)
+        public UserController(IConfiguration configuration, IUserService userService)
         {
-            _repository = repository;
+            Configuration = configuration;
+            _userService = userService;
         }
 
-        [HttpGet("users/{id:int}")]
-        public IEnumerable<User> GetUsersByCustomerId(CancellationToken token, int id)
+        [HttpGet("{id}")]
+        public IActionResult GetUsersByCustomerId(int id)
         {
-            return _repository.GetByCustomerId(token, id);
+            return Ok(_userService.GetUsersByCustomerId(id));
         }
 
-        [HttpPost("")]
-        public IActionResult AddUser(CancellationToken token, [FromBody] User user)
+        [HttpPost]
+        public IActionResult AddUser([FromBody] User user)
         {
-            _repository.Add(token, user);
+            _userService.AddUser(user);
             return Ok(user.Name);
         }
 
-        [HttpPost("")]
-        public IActionResult EditUser(CancellationToken token, [FromBody] User user)
+        [HttpPost]
+        public IActionResult EditUser([FromBody] User user)
         {
-            _repository.Edit(token, user);
+            _userService.EditUser(user);
+            return Ok(user.Name);
+        }
+
+        [HttpGet("id")]
+        public IActionResult DeleteUser(int id)
+        {
+            _userService.DeleteUser(id);
             return Ok();
         }
 
-        [HttpGet("users/{id:int}")]
-        public IActionResult DeleteUser(CancellationToken token, int id)
+        public IActionResult Login(string returnUrl = null)
         {
-            _repository.Delete(token, id);
-            return Ok();
+            TempData["returnUrl"] = returnUrl;
+            return Ok("Url saved");
         }
 
-        [HttpPost("login")]
-        public IActionResult Login(CancellationToken token, [FromBody]User user)
+        [HttpPost]
+        public async Task<IActionResult> Login([FromBody] UserLoginModel user)
         {
+            const string badUserNameOrPasswordMessage = "Username or password is incorrect.";
+
             if (user == null)
-                return NotFound("User doesn't exist");
-
-            var dbUser = _repository.GetByLogin(token, user.UserName);
-            if (PasswordHasher.ValidatePassowrd(user.Password, dbUser.Password))
             {
-                dbUser.Password = string.Empty;
-                return Ok(dbUser);
+                return BadRequest(badUserNameOrPasswordMessage);
+            }
+
+            var dbUser = _userService.GetByLogin(user.UserName);
+
+            if (dbUser != null)
+            {
+                if (user.Password == dbUser.Password)
+                {
+                    dbUser.Password = string.Empty;
+                }
+                else
+                {
+                    return BadRequest(badUserNameOrPasswordMessage);
+                }
             }
             else
             {
-                return BadRequest();
+                var admin = new AdminAccount(Configuration);
+
+                if (user.UserName == admin.UserName &&
+                    user.Password == admin.Password)
+                {
+                    var adminIdentity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
+                    adminIdentity.AddClaim(new Claim(ClaimTypes.Name, admin.UserName));
+
+                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(adminIdentity));
+
+                    return Ok(admin.UserName);
+                }
+                else
+                {
+                    return BadRequest(badUserNameOrPasswordMessage);
+                }
             }
+
+            var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
+            identity.AddClaim(new Claim(ClaimTypes.Name, dbUser.UserName));
+
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
+
+            return Ok(dbUser.CustomerId);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return Ok();
         }
     }
 }

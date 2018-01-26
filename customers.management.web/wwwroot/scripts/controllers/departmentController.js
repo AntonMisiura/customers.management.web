@@ -1,14 +1,19 @@
-﻿Application.controller("departmentController", function ($scope, $http, $location, customerService) {
+﻿Application.controller("departmentController", function ($scope, $http, $location, customerService, customerStorage) {
+	$scope.customerId = customerStorage.getId();
 
-	$scope.departments = [{
-		Id: 1, Name: "dep1", Address: "adr1", Manager: "user1"
-	},
-	{
-		Id: 2, Name: "dep2", Address: "adr2", Manager: "user2"
-	},
-	{
-		Id: 3, Name: "dep3", Address: "adr3", Manager: "user3"
-	}];
+	$scope.showDepartments = false;
+	$scope.departments = [];
+
+	$scope.initDepartments = function() {
+		var url = "department/getdepartmentsbycustomerid/" + $scope.customerId;
+
+		$http.get(url).then(function successCallback(response) {
+			$scope.departments = response.data;
+			$scope.showDepartments = true;
+		}, function errorCallback() {
+			alert("An error occured during loading departments!");
+		});
+	};
 
 	$scope.go = function(path) {
 		$location.path(path);

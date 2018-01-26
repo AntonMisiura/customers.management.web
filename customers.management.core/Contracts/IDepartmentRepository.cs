@@ -7,6 +7,11 @@ namespace customers.management.core.Contracts
 {
     public interface IDepartmentRepository : IRepository<Department>
     {
-
+        /// <summary>
+        /// get departments of customer by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        List<Department> GetByCustomerId(int id);
     }
 }

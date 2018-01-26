@@ -1,0 +1,11 @@
+﻿CREATE TABLE [dbo].[Customers]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
+	[Name] NVARCHAR (50) NOT NULL,
+	[Address] NVARCHAR (50) NOT NULL,
+	[Email] NVARCHAR (50) NOT NULL,
+	[Phone] NVARCHAR (50) NOT NULL,
+	[Comments] NVARCHAR (50) NULL,
+	[TypeId] INT NULL,
+	CONSTRAINT [FK_Customer_toType] FOREIGN KEY ([TypeId]) REFERENCES [Types] ([Id])
+)

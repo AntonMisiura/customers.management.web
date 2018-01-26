@@ -1,24 +1,30 @@
-﻿Application.controller("generalController", function ($scope, $http, $location, customerService) {
+﻿Application.controller("generalController", function ($scope, $http, $location, customerService, accountService, customerStorage) {
+	$scope.isAdmin = accountService.getStatus();
 
-	$scope.customers = [{
-		Id: 1, Name: "custom1", Address: "adr1", Email: "Email1", Phone: "Mobile1", Comments: "comment1"
-	},
-	{
-		Id: 2, Name: "custom2", Address: "adr2", Email: "Email2", Phone: "Mobile2", Comments: "comment2"
-	},
-	{
-		Id: 3, Name: "custom3", Address: "adr3", Email: "Email3", Phone: "Mobile3", Comments: "comment3"
-	}];
+	$scope.customers = [];
+	$scope.showCustTable = false;
+	$scope.showConctactTable = false;
+	$scope.selectedCustomerId = "";
 
-	$scope.contacts = [{
-		Id: 1, Name: "cont1", Role: "role1", Email: "Email1", Phone: "Mobile1"
-	},
-	{
-		Id: 2, Name: "cont2", Role: "role2", Email: "Email2", Phone: "Mobile2"
-	},
-	{
-		Id: 3, Name: "cont3", Role: "role3", Email: "Email3", Phone: "Mobile3"
-	}];
+	$scope.contacts = [];
+
+	$scope.initCustomers = function () {
+		var url = "customer/getall";
+
+		$http.get(url).then(function successCallback(response) {
+			$scope.customers = response.data;
+			$scope.contacts = response.data.contacts;
+		}, function errorCallback() {
+			
+		});
+	};
+
+	$scope.selectCustomer = function() {
+		$scope.showCustTable = true;
+		$scope.showConctactTable = true;
+		customerStorage.setId($scope.selectedCustomerId);
+		window.localStorage.setItem("customerId", $scope.selectedCustomerId);
+	};
 
 	$scope.go = function (path) {
 		$location.path(path);
@@ -50,7 +56,7 @@
 		}
 	};
 
-	$scope.addCustomer = function() {
+	$scope.addCustomer = function () {
 		$scope.go("/customer/add");
 	};
 

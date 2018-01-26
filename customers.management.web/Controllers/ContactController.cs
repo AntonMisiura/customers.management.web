@@ -10,40 +10,34 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace customers.management.web.Controllers
 {
-    [Authorize(Policy = "RequireAdminRole")]
+    [Route("[controller]/[action]")]
     public class ContactController : Controller
     {
-        private IContactRepository _repository;
+        private IContactService _contactService;
 
-        public ContactController(IContactRepository repository)
+        public ContactController(IContactService contactService)
         {
-            _repository = repository;
+            _contactService = contactService;
         }
 
-        [HttpGet("contacts/{id:int}")]
-        public IEnumerable<Contact> GetContactsByCustomerId(CancellationToken token, int id)
+        [HttpPost]
+        public IActionResult AddContact([FromBody] Contact contact)
         {
-            return _repository.GetByCustomerId(token, id);
+            _contactService.AddContact(contact);
+            return Ok(contact.Name);
         }
 
-        [HttpPost("")]
-        public IActionResult AddContact(CancellationToken token, [FromBody] Contact contact)
+        [HttpPost]
+        public IActionResult EditContact([FromBody] Contact contact)
         {
-            _repository.Add(token, contact);
-            return Ok();
+           _contactService.EditContact(contact);
+            return Ok(contact.Name);
         }
 
-        [HttpPost("")]
-        public IActionResult EditContact(CancellationToken token, [FromBody] Contact contact)
+        [HttpGet("{id}")]
+        public IActionResult DeleteContact(int id)
         {
-            _repository.Edit(token, contact);
-            return Ok();
-        }
-
-        [HttpGet("contacts/{id:int}")]
-        public IActionResult DeleteContact(CancellationToken token, int id)
-        {
-            _repository.Delete(token, id);
+            _contactService.DeleteContact(id);
             return Ok();
         }
     }

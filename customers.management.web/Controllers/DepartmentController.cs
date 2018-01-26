@@ -7,40 +7,41 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace customers.management.web.Controllers
 {
-    [Authorize(Policy = "RequireAdminRole")]
+    [Route("[controller]/[action]")]
     public class DepartmentController : Controller
     {
-        private IDepartmentRepository _repository;
+        private IDepartmentService _departmentService;
 
-        public DepartmentController(IDepartmentRepository repository)
+        public DepartmentController(IDepartmentService departmentService)
         {
-            _repository = repository;
+            _departmentService = departmentService;
         }
 
-        [HttpGet("departments/{id:int}")]
-        public IEnumerable<Department> GetDepartmentsByCustomerId(CancellationToken token, int id)
+        [HttpGet("{id}")]
+        public IActionResult GetDepartmentsByCustomerId(int id)
         {
-            return _repository.GetByCustomerId(token, id);
+            var departments = _departmentService.GetDepartmentsByCustomerId(id);
+            return Ok(departments);
         }
 
-        [HttpPost("")]
-        public IActionResult AddDepartment(CancellationToken token, [FromBody] Department department)
+        [HttpPost]
+        public IActionResult AddDepartment([FromBody] Department department)
         {
-            _repository.Add(token, department);
-            return Ok();
+            _departmentService.AddDepartment(department);
+            return Ok(department.Name);
         }
 
-        [HttpPost("")]
-        public IActionResult EditDepartment(CancellationToken token, [FromBody] Department department)
+        [HttpPost]
+        public IActionResult EditDepartment([FromBody] Department department)
         {
-            _repository.Edit(token, department);
-            return Ok();
+            _departmentService.EditDepartment(department);
+            return Ok(department.Name);
         }
 
-        [HttpGet("departments/{id:int}")]
-        public IActionResult DeleteDepartment(CancellationToken token, int id)
+        [HttpGet("{id}")]
+        public IActionResult DeleteDepartment(int id)
         {
-            _repository.Delete(token, id);
+            _departmentService.DeleteDepartment(id);
             return Ok();
         }
     }

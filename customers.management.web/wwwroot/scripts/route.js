@@ -55,6 +55,11 @@
 			{
 				templateUrl: "views/addUser.html",
 				controller: "addUserController"
+			})
+			.when("/login",
+			{
+				templateUrl: "views/login.html",
+				controller: "loginController"
 			});
 	}
 ]);

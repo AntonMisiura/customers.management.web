@@ -6,9 +6,14 @@ using customers.management.core.Contracts;
 using customers.management.core.Entities;
 using customers.management.impl.EF;
 using customers.management.impl.EF.Repo;
+using customers.management.impl.EF.Services;
+using customers.management.web.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -24,20 +29,34 @@ namespace customers.management.web
             Configuration = configuration;
         }
 
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
-            services.AddDbContext<CustomersContext>();
+            var connection = Configuration.GetSection("ConnectionStrings")["DefaultConnection"];
+            services.AddDbContext<CustomersContext>(options =>
+                options.UseSqlServer(connection));
 
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IContactRepository, ContactRepository>();
             services.AddTransient<ICustomerRepository, CustomerRepository>();
             services.AddTransient<IDepartmentRepository, DepartmentRepository>();
+            services.AddTransient<ICustomerContactRepository, CustomerContactRepository>();
+
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IContactService, ContactService>();
+            services.AddTransient<ICustomerService, CustomerService>();
+            services.AddTransient<IDepartmentService, DepartmentService>();
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options => options.LoginPath = new PathString("/login"));
 
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
             });
+
+            services.AddMvc();
+
+            return services.BuildServiceProvider();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env,
@@ -48,11 +67,9 @@ namespace customers.management.web
 
             app.UseDefaultFiles();
 
-            app.UseStaticFiles();
+            //app.UseAuthentication();
 
-#pragma warning disable 618
-            app.UseIdentity();
-#pragma warning restore 618
+            app.UseStaticFiles();
 
             app.UseMvc(routes =>
             {
@@ -60,42 +77,6 @@ namespace customers.management.web
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-            //CreateRoles(serviceProvider).Wait();
-        }
-
-        private async Task CreateRoles(IServiceProvider serviceProvider)
-        {
-            var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-            var userManager = serviceProvider.GetRequiredService<UserManager<User>>();
-            string[] roleNames = { "Admin", "User"};
-            IdentityResult roleResult;
-
-            foreach (var roleName in roleNames)
-            {
-                var roleExist = await roleManager.RoleExistsAsync(roleName);
-                if (!roleExist)
-                {
-                    roleResult = await roleManager.CreateAsync(new IdentityRole(roleName));
-                }
-            }
-
-            var admin = new User
-            {
-                UserName = Configuration.GetSection("UserSettings")["Username"],
-                Email = Configuration.GetSection("UserSettings")["Useremail"]
-            };
-
-            var userPassword = Configuration.GetSection("UserSettings")["Password"];
-            var user = await userManager.FindByEmailAsync(Configuration.GetSection("UserSettings")["Useremail"]);
-
-            if (user == null)
-            {
-                var createPowerUser = await userManager.CreateAsync(admin, userPassword);
-                if (createPowerUser.Succeeded)
-                {
-                    await userManager.AddToRoleAsync(admin, "Admin");
-                }
-            }
         }
     }
 }

@@ -12,17 +12,15 @@ namespace customers.management.core.Entities
 
         [Required]
         public string Name { get; set; }
-
         [Required]
         public string Address { get; set; }
-
         [Required]
         public string Email { get; set; }
-
         [Required]
         public string Phone { get; set; }
-
         public string Comments { get; set; }
+
+        public int TypeId { get; set; }
 
         public List<User> Users { get; set; }
         public List<Contact> Contacts { get; set; }

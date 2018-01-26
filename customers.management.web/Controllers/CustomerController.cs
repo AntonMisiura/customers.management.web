@@ -5,43 +5,51 @@ using System.Threading;
 using System.Threading.Tasks;
 using customers.management.core.Contracts;
 using customers.management.core.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace customers.management.web.Controllers
 {
+    [Route("[controller]/[action]")]
     public class CustomerController : Controller
     {
-        private ICustomerRepository _repository;
+        private ICustomerService _customerService;
 
-        public CustomerController(ICustomerRepository repository)
+        public CustomerController(ICustomerService customerService)
         {
-            _repository = repository;
+            _customerService = customerService;
         }
 
-        [HttpGet("")]
-        public Customer GetById(CancellationToken token, int id)
+        [HttpGet]
+        public IActionResult GetAll()
         {
-            return _repository.GetById(token, id);
+            return Ok(_customerService.GetAll());
         }
 
-        [HttpPost("")]
-        public IActionResult AddCustomer(CancellationToken token, [FromBody] Customer customer)
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
         {
-            _repository.Add(token, customer);
-            return Ok();
+            return Ok(_customerService.GetById(id));
         }
 
-        [HttpPost("")]
-        public IActionResult EditCustomer(CancellationToken token, [FromBody] Customer customer)
+        [HttpPost]
+        public IActionResult AddCustomer([FromBody] Customer customer)
         {
-            _repository.Edit(token, customer);
-            return Ok();
+            _customerService.AddCustomer(customer);
+            return Ok(customer.Name);
         }
 
-        [HttpGet("customers/{id:int}")]
-        public IActionResult DeleteCustomer(CancellationToken token, int id)
+        [HttpPost]
+        public IActionResult EditCustomer([FromBody] Customer customer)
         {
-            _repository.Delete(token, id);
+            _customerService.EditCustomer(customer);
+            return Ok(customer.Name);
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult DeleteCustomer(int id)
+        {
+            _customerService.DeleteCustomer(id);
             return Ok();
         }
     }

@@ -1,0 +1,36 @@
+﻿<div ng-cloak ng-controller="headerController">
+	<nav id="navbarCustom" class="navbar navbar-fixed-top" ng-hide="isLogined">
+		<div class="container-fluid">
+			<ul class="nav navbar-nav" id="navbar" style="font-size: 10pt;">
+				<li>
+					<a ng-hide="isLogined">Customers Management</a>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right" id="navForLogout" style="font-size: 10pt;">
+				<li>
+					<a ng-click="login();" ng-show="!isLogined">Login</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<nav id="navbarCustom" class="navbar navbar-fixed-top" ng-show="isLogined">
+		<div class="container-fluid">
+			<ul class="nav navbar-nav" id="navbar" style="font-size: 10pt;">
+				<li>
+					<a href="#!general">General Info</a>
+				</li>
+				<li>
+					<a href="#!users">Users</a>
+				</li>
+				<li>
+					<a href="#!departments">Departments</a>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right" id="navForLogout" style="font-size: 10pt;">
+				<li>
+					<a ng-click="logout();">Logout</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+</div>

@@ -1,0 +1,5 @@
+E:\test_task\customers.management.web\customers.management.db\bin\Debug\customers.management.db.dacpac
+E:\test_task\customers.management.web\customers.management.db\bin\Debug\customers.management.db.dll
+E:\test_task\customers.management.web\customers.management.db\bin\Debug\customers.management.db.pdb
+E:\test_task\customers.management.web\customers.management.db\obj\Debug\customers.management.db.dll
+E:\test_task\customers.management.web\customers.management.db\obj\Debug\customers.management.db.pdb
