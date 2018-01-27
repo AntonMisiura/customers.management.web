@@ -8,6 +8,12 @@ namespace customers.management.core.Contracts
     public interface ICustomerService
     {
         /// <summary>
+        /// get customers with contacts
+        /// </summary>
+        /// <returns></returns>
+        Customer GetCustomerContacts(int id);
+
+        /// <summary>
         /// get all customers
         /// </summary>
         /// <returns></returns>

@@ -7,8 +7,6 @@ namespace customers.management.core.Contracts
 {
     public interface IUserService
     {
-        List<User> GetAll();
-
         /// <summary>
         /// get list of users by customer id
         /// </summary>

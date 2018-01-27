@@ -16,8 +16,7 @@ namespace customers.management.impl.EF.Repo
 
         public List<Department> GetByCustomerId(int id)
         {
-            var departments = Context.Set<Department>().Include(e => e.Manager).ToList();
-            var selected = departments.Where(e => e.CustomerId == id).ToList();
+            var selected = Context.Set<Department>().Where(e => e.CustomerId == id).ToList();
             return selected;
         }
     }

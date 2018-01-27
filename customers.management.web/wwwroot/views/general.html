@@ -2,7 +2,7 @@
 	<div class="row" style="margin-right: 15px; margin-left: 15px; margin-top: 50px;">
 		<div class="col-md-12">
 			<div class="card" style="min-height: 300px!important;">
-				<div class="card-header">
+				<div class="card-header" ng-show="showCustTable">
 					<h4 class="card-title">General info about customers</h4>
 					<div class="pull-right">
 						<button class="btn btn-facebook btn-fill btn-sm"
@@ -96,7 +96,7 @@
 					</div>
 
 					<hr/>
-					<div class="card-header" ng-show="showContactTable">
+					<div class="card-header" ng-show="showCustTable">
 						<h4 class="card-title">Customer Contacts</h4>
 						<div class="pull-right">
 							<button class="btn btn-facebook btn-fill btn-sm"
@@ -105,7 +105,7 @@
 							</button>
 						</div>
 					</div>
-					<div class="card-content table-responsive table-full-width" ng-show="showContactTable">
+					<div class="card-content table-responsive table-full-width" ng-show="showCustTable">
 						<table class="table">
 							<thead>
 							<tr style="text-align: center; vertical-align: middle">

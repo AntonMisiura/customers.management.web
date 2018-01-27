@@ -39,7 +39,7 @@ namespace customers.management.web
             services.AddTransient<IContactRepository, ContactRepository>();
             services.AddTransient<ICustomerRepository, CustomerRepository>();
             services.AddTransient<IDepartmentRepository, DepartmentRepository>();
-            services.AddTransient<ICustomerContactRepository, CustomerContactRepository>();
+            services.AddTransient<IDepartmentUserRepository, DepartmentUserRepository>();
 
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IContactService, ContactService>();

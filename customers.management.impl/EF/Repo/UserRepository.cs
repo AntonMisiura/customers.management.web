@@ -17,14 +17,30 @@ namespace customers.management.impl.EF.Repo
 
         public User GetByLogin(string login)
         {
-            return Context.Set<User>().FirstOrDefault(e => e.UserName == login);
+            try
+            {
+                return Context.Set<User>().FirstOrDefault(e => e.UserName == login);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         public List<User> GetByCustomerId(int id)
         {
-            var users = Context.Set<User>().Include(d => d.Department).ToList();
-            var selected = users.Where(e => e.CustomerId == id).ToList();
-            return selected;
+            try
+            {
+                var selected = Context.Set<User>().Where(e => e.CustomerId == id).ToList();
+                return selected;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            
         }
     }
 }

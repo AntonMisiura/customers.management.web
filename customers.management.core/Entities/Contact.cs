@@ -8,6 +8,7 @@ namespace customers.management.core.Entities
     public class Contact : IEntity
     {
         public int Id { get; set; }
+        public int CustomerId { get; set; }
 
         public string Name { get; set; }
         public string Role { get; set; }

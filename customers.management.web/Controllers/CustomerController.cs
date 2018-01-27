@@ -27,9 +27,9 @@ namespace customers.management.web.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public IActionResult GetCustomerContacts(int id)
         {
-            return Ok(_customerService.GetById(id));
+            return Ok(_customerService.GetCustomerContacts(id));
         }
 
         [HttpPost]

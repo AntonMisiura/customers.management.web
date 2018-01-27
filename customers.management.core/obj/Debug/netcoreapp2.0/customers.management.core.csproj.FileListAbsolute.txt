@@ -1,9 +1,9 @@
 E:\test_task\customers.management.web\customers.management.core\bin\Debug\netcoreapp2.0\customers.management.core.deps.json
 E:\test_task\customers.management.web\customers.management.core\bin\Debug\netcoreapp2.0\customers.management.core.dll
 E:\test_task\customers.management.web\customers.management.core\bin\Debug\netcoreapp2.0\customers.management.core.pdb
-E:\test_task\customers.management.web\customers.management.core\obj\Debug\netcoreapp2.0\customers.management.core.csprojResolveAssemblyReference.cache
 E:\test_task\customers.management.web\customers.management.core\obj\Debug\netcoreapp2.0\customers.management.core.csproj.CoreCompileInputs.cache
 E:\test_task\customers.management.web\customers.management.core\obj\Debug\netcoreapp2.0\customers.management.core.AssemblyInfoInputs.cache
 E:\test_task\customers.management.web\customers.management.core\obj\Debug\netcoreapp2.0\customers.management.core.AssemblyInfo.cs
 E:\test_task\customers.management.web\customers.management.core\obj\Debug\netcoreapp2.0\customers.management.core.dll
 E:\test_task\customers.management.web\customers.management.core\obj\Debug\netcoreapp2.0\customers.management.core.pdb
+E:\test_task\customers.management.web\customers.management.core\obj\Debug\netcoreapp2.0\customers.management.core.csprojResolveAssemblyReference.cache

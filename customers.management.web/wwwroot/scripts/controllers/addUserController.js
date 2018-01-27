@@ -1,8 +1,10 @@
-﻿Application.controller("addUserController", function ($scope, $http, $location) {
+﻿Application.controller("addUserController", function ($scope, $http, $location, customerStorage) {
 	$scope.currentUserDepartments = [];
+	$scope.customerId = customerStorage.getId();
+	$scope.selectedDepartment = {};
 
 	$scope.added = {
-		Name: null, Email: null, Mobile: null, UserName: null, Password: null, Department: null
+		Name: null, Email: null, Mobile: null, UserName: null, Password: null, CustomerId: $scope.customerId, Department: null
 	};
 
 	$scope.cancel = function () {
@@ -10,18 +12,22 @@
 	};
 
 	$scope.apply = function () {
-		console.log($scope.added);
-		$scope.cancel();
+		var url = "user/adduser";
+		var newuser = $scope.added;
+		$http.post(url, newuser).then(function successCallback(response) {
+			$scope.cancel();
+		}, function errorCallback() {
+			alert("An error occured during loading departments!");
+		});
 	};
 
-	$scope.getCustomerAvailableDepartments = function (customerId) {
-		$scope.currentUserDepartments = [
-			{
-				Id: 1, Name: "dep1"
-			},
-			{
-				Id: 2, Name: "dep2"
-			}
-		];
+	$scope.getCustomerAvailableDepartments = function () {
+		var url = "department/getbycustomerid/" + $scope.customerId;
+
+		$http.get(url).then(function successCallback(response) {
+			$scope.currentUserDepartments = response.data;
+		}, function errorCallback() {
+			alert("An error occured during loading departments!");
+		});
 	};
 });

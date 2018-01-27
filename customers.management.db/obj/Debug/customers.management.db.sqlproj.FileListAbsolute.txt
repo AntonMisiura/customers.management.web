@@ -3,3 +3,7 @@ E:\test_task\customers.management.web\customers.management.db\bin\Debug\customer
 E:\test_task\customers.management.web\customers.management.db\bin\Debug\customers.management.db.pdb
 E:\test_task\customers.management.web\customers.management.db\obj\Debug\customers.management.db.dll
 E:\test_task\customers.management.web\customers.management.db\obj\Debug\customers.management.db.pdb
+E:\test_task\customers.management.web\customers.management.db\obj\Debug\Model.xml
+E:\test_task\customers.management.web\customers.management.db\obj\Debug\refactor.xml
+E:\test_task\customers.management.web\customers.management.db\obj\Debug\postdeploy.sql
+E:\test_task\customers.management.web\customers.management.db\obj\Debug\predeploy.sql

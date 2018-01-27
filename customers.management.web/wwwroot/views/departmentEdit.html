@@ -18,7 +18,7 @@
 									</div>
 									<div class="form-group">
 										<input type="text" class="form-control white-input-no-border" id="departmentName"
-											ng-model="editable.Name"/>
+											ng-model="editable.name"/>
 									</div>
 								</div>
 								<div class="form-inline">
@@ -27,7 +27,7 @@
 									</div>
 									<div class="form-group">
 										<input type="text" class="form-control white-input-no-border" id="departmentAddress"
-										       ng-model="editable.Address"/>
+										       ng-model="editable.address"/>
 									</div>
 									
 									<div class="form-inline">
@@ -40,7 +40,7 @@
 											        ng-init="getCustomerAvailableUsers(1);">												
 												<option ng-repeat="user in currentDepartmentUsers"
 												        value="{{user}}">
-													{{user.Name}}
+													{{user.name}}
 												</option>
 											</select>
 										</div>

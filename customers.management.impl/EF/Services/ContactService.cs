@@ -10,13 +10,10 @@ namespace customers.management.impl.EF.Services
     public class ContactService : IContactService
     {
         private IContactRepository _contactRepository;
-        private ICustomerContactRepository _customerContactRepository;
-
-        public ContactService(IContactRepository contactRepository,
-            ICustomerContactRepository customerContactRepository)
+       
+        public ContactService(IContactRepository contactRepository)
         {
             _contactRepository = contactRepository;
-            _customerContactRepository = customerContactRepository;
         }
 
         public void AddContact(Contact contact)

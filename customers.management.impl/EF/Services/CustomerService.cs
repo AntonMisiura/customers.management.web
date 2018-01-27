@@ -15,9 +15,14 @@ namespace customers.management.impl.EF.Services
             _customerRepository = customerRepository;
         }
 
+        public Customer GetCustomerContacts(int id)
+        {
+            return _customerRepository.GetCustomerContactsById(id);
+        }
+
         public List<Customer> GetAll()
         {
-            return _customerRepository.GetList();
+            return _customerRepository.GetAll();
         }
 
         public Customer GetById(int id)

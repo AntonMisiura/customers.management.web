@@ -13,17 +13,27 @@
 
 		$http.get(url).then(function successCallback(response) {
 			$scope.customers = response.data;
-			$scope.contacts = response.data.contacts;
 		}, function errorCallback() {
 			
 		});
 	};
 
 	$scope.selectCustomer = function() {
+		$scope.initContacts();
 		$scope.showCustTable = true;
 		$scope.showConctactTable = true;
 		customerStorage.setId($scope.selectedCustomerId);
 		window.localStorage.setItem("customerId", $scope.selectedCustomerId);
+	};
+
+	$scope.initContacts = function () {
+		var url = "customer/GetCustomerContacts/" + $scope.selectedCustomerId;
+
+		$http.get(url).then(function successCallback(response) {
+			$scope.contacts = response.data.contacts;
+		}, function errorCallback() {
+			alert("An error occured during loading contacts!");
+		});
 	};
 
 	$scope.go = function (path) {

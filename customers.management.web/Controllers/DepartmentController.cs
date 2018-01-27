@@ -18,7 +18,7 @@ namespace customers.management.web.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetDepartmentsByCustomerId(int id)
+        public IActionResult GetByCustomerId(int id)
         {
             var departments = _departmentService.GetDepartmentsByCustomerId(id);
             return Ok(departments);

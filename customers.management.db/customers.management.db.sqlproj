@@ -129,6 +129,5 @@
     <Build Include="Users.sql" />
     <Build Include="Departments.sql" />
     <Build Include="SchoolNumbers.sql" />
-    <Build Include="CustomerContact.sql" />
   </ItemGroup>
 </Project>

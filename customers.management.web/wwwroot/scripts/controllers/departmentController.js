@@ -5,7 +5,7 @@
 	$scope.departments = [];
 
 	$scope.initDepartments = function() {
-		var url = "department/getdepartmentsbycustomerid/" + $scope.customerId;
+		var url = "department/getbycustomerid/" + $scope.customerId;
 
 		$http.get(url).then(function successCallback(response) {
 			$scope.departments = response.data;

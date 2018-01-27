@@ -12,13 +12,12 @@
 	};
 
 	$scope.getCustomerAvailableUsers = function (customerId) {
-		$scope.currentDepartmentUsers = [
-			{
-				Id: 1, Name: "user1"
-			},
-			{
-				Id: 2, Name: "user2"
-			}
-		];
+		var url = "user/getbycustomerid/" + $scope.customerId;
+
+		$http.get(url).then(function successCallback(response) {
+			$scope.currentDepartmentUsers = response.data;
+		}, function errorCallback() {
+			alert("An error occured during loading users!");
+		});
 	};
 });

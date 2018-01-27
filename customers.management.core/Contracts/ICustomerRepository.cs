@@ -7,6 +7,7 @@ namespace customers.management.core.Contracts
 {
     public interface ICustomerRepository : IRepository<Customer>
     {
-        List<Customer> GetList();
+        Customer GetCustomerContactsById(int id);
+
     }
 }

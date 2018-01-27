@@ -4,7 +4,7 @@
 	$scope.showUsers = false;
 
 	$scope.initUsers = function() {
-		var url = "user/getusersbycustomerid/" + $scope.customerId;
+		var url = "user/getbycustomerid/" + $scope.customerId;
 
 		$http.get(url).then(function successCallback(response) {
 			$scope.users = response.data;

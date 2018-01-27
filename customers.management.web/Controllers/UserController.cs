@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 
 namespace customers.management.web.Controllers
 {
@@ -29,23 +30,40 @@ namespace customers.management.web.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetUsersByCustomerId(int id)
+        public IActionResult GetByCustomerId(int id)
         {
-            return Ok(_userService.GetUsersByCustomerId(id));
+            var users = _userService.GetUsersByCustomerId(id);
+            return Ok(users);
         }
 
         [HttpPost]
         public IActionResult AddUser([FromBody] User user)
         {
-            _userService.AddUser(user);
-            return Ok(user.Name);
+            if (user != null)
+            {
+                _userService.AddUser(user);
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
+
         }
 
         [HttpPost]
         public IActionResult EditUser([FromBody] User user)
         {
-            _userService.EditUser(user);
-            return Ok(user.Name);
+            if (user != null)
+            {
+                _userService.EditUser(user);
+                return Ok(user.Name);
+            }
+            else
+            {
+                return BadRequest();
+            }
+
         }
 
         [HttpGet("id")]

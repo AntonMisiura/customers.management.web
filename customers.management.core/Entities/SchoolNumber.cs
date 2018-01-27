@@ -9,6 +9,7 @@ namespace customers.management.core.Entities
     {
         public int Id { get; set; }
         public int CustomerId { get; set; }
+
         public int Number { get; set; }
     }
 }

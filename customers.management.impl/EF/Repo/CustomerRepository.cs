@@ -15,11 +15,10 @@ namespace customers.management.impl.EF.Repo
 
         }
 
-        public List<Customer> GetList()
+        public Customer GetCustomerContactsById(int id)
         {
-            var customers = Context.Set<Customer>().Include(d => d.Departments).ToList();
-            return customers;
+            var customer = Context.Set<Customer>().Include(c => c.Contacts).ToList().FirstOrDefault(p => p.Id == id);
+            return customer;
         }
-
     }
 }
