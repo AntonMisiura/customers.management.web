@@ -14,10 +14,19 @@ namespace customers.management.web.Controllers
     public class CustomerController : Controller
     {
         private ICustomerService _customerService;
+        private ICustomerDetailsService _customerDetailsService;
 
-        public CustomerController(ICustomerService customerService)
+        public CustomerController(ICustomerService customerService,
+            ICustomerDetailsService customerDetailsService)
         {
             _customerService = customerService;
+            _customerDetailsService = customerDetailsService;
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetManager(int id)
+        {
+            return Ok(_customerDetailsService.GetManagerByDepId(id));
         }
 
         [HttpGet]

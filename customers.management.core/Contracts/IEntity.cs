@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace customers.management.core.Contracts
+﻿namespace customers.management.core.Contracts
 {
     public interface IEntity
     {
-        int Id { get; set; }
+        int? Id { get; set; }
     }
 }

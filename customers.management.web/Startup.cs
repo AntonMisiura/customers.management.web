@@ -41,6 +41,9 @@ namespace customers.management.web
             services.AddTransient<IDepartmentRepository, DepartmentRepository>();
             services.AddTransient<IDepartmentUserRepository, DepartmentUserRepository>();
 
+            services.AddTransient<ICustomerDetailsService, CustomerDetailsService>();
+            services.AddTransient<IManagerRepository, ManagerRepository>();
+
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IContactService, ContactService>();
             services.AddTransient<ICustomerService, CustomerService>();

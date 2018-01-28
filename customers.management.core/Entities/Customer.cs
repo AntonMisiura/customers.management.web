@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 using customers.management.core.Contracts;
 
@@ -8,7 +9,7 @@ namespace customers.management.core.Entities
 {
     public class Customer : IEntity
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         [Required]
         public string Name { get; set; }
@@ -20,10 +21,9 @@ namespace customers.management.core.Entities
         public string Phone { get; set; }
         public string Comments { get; set; }
 
-        public int TypeId { get; set; }
+        public Type Type { get; set; }
 
         public List<User> Users { get; set; }
         public List<Contact> Contacts { get; set; }
-        public List<Department> Departments { get; set; }
     }
 }

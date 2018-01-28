@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace customers.management.impl.EF.Repo
+﻿namespace customers.management.impl.EF.Repo
 {
     public class BaseRepository
     {

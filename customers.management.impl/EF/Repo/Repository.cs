@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Xml.Linq;
 using customers.management.core.Contracts;
 
 namespace customers.management.impl.EF.Repo
@@ -40,8 +37,7 @@ namespace customers.management.impl.EF.Repo
 
         public void Edit(T t)
         {
-            var editable = GetById(t.Id);
-            Context.Set<T>().Update(editable);
+            Context.Set<T>().Update(t);
 
             Save();
         }

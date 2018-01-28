@@ -8,7 +8,7 @@ namespace customers.management.core.Entities
 {
     public class DepartmentUser : IEntity, IEnumerable
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         
         public int DepartmentId { get; set; }
         public int UserId { get; set; }

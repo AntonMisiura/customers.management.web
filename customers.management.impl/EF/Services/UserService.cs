@@ -25,56 +25,45 @@ namespace customers.management.impl.EF.Services
         public List<User> GetUsersByCustomerId(int id)
         {
             var users = _userRepository.GetByCustomerId(id);
-            var departments = _departmentRepository.GetByCustomerId(id);
-            var usersDepatments = _departmentUserRepository.GetAll();
+            //var departments = _departmentRepository.GetByCustomerId(id);
+            //var usersDepatments = _departmentUserRepository.GetAll();
 
-            foreach (var user in users)
-            {
-                foreach (var dep in departments)
-                {
-                    foreach (var userDeps in usersDepatments)
-                    {
-                        if (user.Id == userDeps.UserId 
-                            && dep.Id == userDeps.DepartmentId)
-                        {
-                            var department = _departmentRepository.GetById(userDeps.DepartmentId);
+            //foreach (var user in users)
+            //{
+            //    foreach (var dep in departments)
+            //    {
+            //        foreach (var userDeps in usersDepatments)
+            //        {
+            //            if (user.Id == userDeps.UserId 
+            //                && dep.Id == userDeps.DepartmentId)
+            //            {
+            //                var department = _departmentRepository.GetById(userDeps.DepartmentId);
 
-                            user.Department = new Department()
-                            {
-                                Name = department.Name,
-                            };
-                        }
-                    }
-                }
-            }
+            //                user.Department = new Department()
+            //                {
+            //                    Name = department.Name,
+            //                };
+            //            }
+            //        }
+            //    }
+            //}
 
             return users;
         }
 
-        public void AddUser(User user)
+        public void SaveUsers(List<User> users)
         {
-            _userRepository.Add(user);
-            var added = GetByLogin(user.UserName);
-
-            if (added.Department != null)
+            foreach (var user in users)
             {
-                var depId = added.Department.Id;
-                var departmentUsers = _departmentUserRepository.GetById(depId);
-
-                if (departmentUsers == null)
+                if (user.Id == null)
                 {
-                    _departmentUserRepository.Add(new DepartmentUser()
-                    {
-                        DepartmentId = depId,
-                        UserId = added.Id
-                    });
+                    _userRepository.Edit(user);
+                }
+                else
+                {
+                    _userRepository.Add(user);
                 }
             }
-        }
-
-        public void EditUser(User user)
-        {
-            _userRepository.Edit(user);
         }
 
         public void DeleteUser(int id)
