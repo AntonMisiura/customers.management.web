@@ -1,0 +1,306 @@
+﻿<div ng-controller="adminPageController" ng-init="initCustomers();">
+<div class="row" style="margin-right: 15px; margin-left: 15px; margin-top: 50px;">
+<div class="col-md-12">
+<div class="card" style="min-height: 300px!important;">
+<div class="card-header">
+	<h4 class="card-title">General info about customers</h4>
+</div>
+<div class="card-content" style="padding: 0 15px 10px 15px;">
+<div class="row">
+	<div class="col-md-4">
+		<div>
+			<h4>Select customer</h4>
+		</div>
+		<select ng-model="selectedCustomerId"
+		        style="min-width: 50%;">
+			<option ng-repeat="c in customers"
+			        value="{{c.customer.id}}">
+				{{c.customer.name}}
+			</option>
+		</select>
+							
+		<button class="btn btn-facebook btn-fill btn-sm"
+		        ng-click="selectCustomer();">
+			Select
+		</button>
+	</div>
+	<div class="col-md-8" ng-hide="!show">
+		<div class="pull-right">
+			<button class="btn btn-facebook btn-fill btn-sm"
+			        ng-click="addCustomer();">
+				Add Customer
+			</button>
+		</div>
+	</div>
+</div>
+					
+<div class="card-content table-responsive table-full-width">
+	<table class="table">
+		<thead>
+		<tr style="text-align: center; vertical-align: middle">
+			<th>
+				<a href="">#</a>
+			</th>
+
+			<th>
+				<a href="">Name</a>
+			</th>
+
+			<th>
+				<a href="">Address</a>
+			</th>
+
+			<th>
+				<a href="">Email</a>
+			</th>
+
+			<th>
+				<a href="">Phone</a>
+			</th>
+
+			<th>
+				<a href="">Comments</a>
+			</th>
+		</tr>
+		</thead>
+
+		<tbody>
+		<tr style="text-align: center; vertical-align: middle"
+		    ng-repeat="item in customers track by $index">
+			<td>
+				<form class="form-inline">
+					<div class="form-group" style="width: 15% !important;">
+						{{$index+1}}
+					</div>
+					<div class="form-group" style="width: 20% !important;"
+					     ng-show="isAdmin">
+						<a ng-click="editCustomer(item);">
+							<i class="fa fa-pencil" aria-hidden="true"></i>
+						</a>
+					</div>
+					<div class="form-group" style="width: 20% !important;"
+					     ng-show="isAdmin">
+						<a ng-click="deleteCustomer(item.id);">
+							<i class="fa fa-trash" aria-hidden="true"></i>
+						</a>
+					</div>
+				</form>
+			</td>
+			<td>{{item.customer.name}}</td>
+			<td>{{item.customer.address}}</td>
+			<td>{{item.customer.email}}</td>
+			<td>{{item.customer.phone}}</td>
+			<td>{{item.customer.comments}}</td>
+		</tr>
+		</tbody>
+	</table>
+</div>
+
+<hr/>
+<div class="card-header" ng-hide="!show">
+	<h4 class="card-title">Customer Contacts</h4>
+	<div class="pull-right">
+		<button class="btn btn-facebook btn-fill btn-sm"
+		        ng-click="addContact();">
+			Add Contact
+		</button>
+	</div>
+</div>
+<div class="card-content table-responsive table-full-width" ng-hide="!show">
+	<table class="table">
+		<thead>
+		<tr style="text-align: center; vertical-align: middle">
+			<th>
+				<a href="">#</a>
+			</th>
+
+			<th>
+				<a href="">Name</a>
+			</th>
+
+			<th>
+				<a href="">Role</a>
+			</th>
+
+			<th>
+				<a href="">Email</a>
+			</th>
+
+			<th>
+				<a href="">Phone</a>
+			</th>
+		</tr>
+		</thead>
+
+		<tbody>
+		<tr style="text-align: center; vertical-align: middle"
+		    ng-repeat="item in contacts track by $index">
+			<td>
+				<form class="form-inline">
+					<div class="form-group" style="width: 15% !important;">
+						{{$index+1}}
+					</div>
+					<div class="form-group" style="width: 20% !important;">
+						<a ng-click="editContact(item);">
+							<i class="fa fa-pencil" aria-hidden="true"></i>
+						</a>
+					</div>
+					<div class="form-group" style="width: 20% !important;">
+						<a ng-click="deleteContact(item.id);">
+							<i class="fa fa-trash" aria-hidden="true"></i>
+						</a>
+					</div>
+				</form>
+			</td>
+			<td>{{item.name}}</td>
+			<td>{{item.role}}</td>
+			<td>{{item.email}}</td>
+			<td>{{item.phone}}</td>
+		</tr>
+		</tbody>
+	</table>
+</div>
+					
+<hr/>
+<div class="card-header" ng-hide="!show">
+	<h4 class="card-title">Users</h4>
+	<div class="pull-right">
+		<button class="btn btn-facebook btn-fill btn-sm"
+		        ng-click="addUser();">
+			Add User
+		</button>
+	</div>
+</div>
+<div class="card-content" style="padding: 0 15px 10px 15px;">
+	<div class="card-content table-responsive table-full-width" ng-hide="!show">
+		<table class="table">
+			<thead>
+			<tr style="text-align: center; vertical-align: middle">
+				<th>
+					<a href="">#</a>
+				</th>
+
+				<th>
+					<a href="">Name</a>
+				</th>
+
+				<th>
+					<a href="">Email</a>
+				</th>
+
+				<th>
+					<a href="">Mobile</a>
+				</th>
+
+				<th>
+					<a href="">UserName</a>
+				</th>
+
+				<th>
+					<a href="">Password</a>
+				</th>
+
+				<th>
+					<a href="">Department</a>
+				</th>
+			</tr>
+			</thead>
+
+			<tbody>
+			<tr style="text-align: center; vertical-align: middle"
+			    ng-repeat="item in users track by $index">
+				<td>
+					<form class="form-inline">
+						<div class="form-group" style="width: 15% !important;">
+							{{$index+1}}											
+						</div>
+						<div class="form-group" style="width: 20% !important;">
+							<a ng-click="editUser(item);">
+								<i class="fa fa-pencil" aria-hidden="true"></i>
+							</a>
+						</div>
+						<div class="form-group" style="width: 20% !important;">
+							<a ng-click="deleteUser(item.id);">
+								<i class="fa fa-trash" aria-hidden="true"></i>
+							</a>
+						</div>
+					</form>
+				</td>
+				<td>{{item.name}}</td>
+				<td>{{item.email}}</td>
+				<td>{{item.mobile}}</td>
+				<td>{{item.userName}}</td>
+				<td>{{item.password}}</td>
+				<td>{{item.department.name}}</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+	
+<hr/>
+<div class="card-header" ng-hide="!show">
+	<h4 class="card-title">Departments</h4>
+	<div class="pull-right">
+		<button class="btn btn-facebook btn-fill btn-sm"
+		        ng-click="addDepartment();">
+			Add Department
+		</button>
+	</div>
+</div>
+<div class="card-content" style="padding: 0 15px 10px 15px;">
+	<div class="card-content table-responsive table-full-width" ng-hide="!show">
+		<table class="table">
+			<thead>
+			<tr style="text-align: center; vertical-align: middle">
+				<th>
+					<a href="">#</a>
+				</th>
+
+				<th>
+					<a href="">Name</a>
+				</th>
+
+				<th>
+					<a href="">Address</a>
+				</th>
+
+				<th>
+					<a href="">Manager</a>
+				</th>
+			</tr>
+			</thead>
+
+			<tbody>
+			<tr style="text-align: center; vertical-align: middle"
+			    ng-repeat="item in departments track by $index">
+				<td>
+					<form class="form-inline">
+						<div class="form-group" style="width: 15% !important;">
+							{{$index+1}}											
+						</div>
+						<div class="form-group" style="width: 20% !important;">
+							<a ng-click="editDepartment(item);">
+								<i class="fa fa-pencil" aria-hidden="true"></i>
+							</a>
+						</div>
+						<div class="form-group" style="width: 20% !important;">
+							<a ng-click="deleteDepartment(item.id);">
+								<i class="fa fa-trash" aria-hidden="true"></i>
+							</a>
+						</div>
+					</form>
+				</td>
+				<td>{{item.name}}</td>
+				<td>{{item.address}}</td>
+				<td>{{item.manager.name}}</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>

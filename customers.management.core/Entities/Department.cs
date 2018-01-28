@@ -9,7 +9,6 @@ namespace customers.management.core.Entities
         public string Name { get; set; }
         public string Address { get; set; }
 
-        public int ManagerId { get; set; }
         public Manager Manager { get; set; }
 
         //public List<User> Users { get; set; }

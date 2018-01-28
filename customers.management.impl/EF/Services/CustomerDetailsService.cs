@@ -44,13 +44,17 @@ namespace customers.management.impl.EF.Services
 
             foreach (var user in _userService.GetUsersByCustomerId(id))
             {
+                if (user.Department.Id != null)
+                    user.Department.Manager = _managerRepository.GetByDepartmentId((int) user.Department.Id);
+
                 departments.Add(user.Department);
             }
 
             var customerDetails = new CustomerDetails
             {
                 Customer = _customerService.GetById(id),
-                Departments = departments.ToList()
+                Departments = departments.ToList(),
+                Contacts = _contactService.GetByCustomerId(id)
             };
 
             //get unique departments from users list and inject to customerDetails.Departments

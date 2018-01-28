@@ -1,18 +1,18 @@
 ﻿Application.factory("accountService", function () {
-	var isAdmin = false;
+	var login = "";
 
 	var service = {
-		setStatus: setStatus,
-		getStatus: getStatus
+		setLogin: setLogin,
+		getLogin: getLogin
 	};
 
 	return service;
 
-	function setStatus(status) {
-		isAdmin = status;
+	function setLogin(lg) {
+		login = lg;
 	}
 
-	function getStatus() {
-		return isAdmin;
+	function getLogin() {
+		return login;
 	}
 });

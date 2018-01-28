@@ -20,10 +20,10 @@ namespace customers.management.web.Controllers
         [HttpGet]
         public IActionResult GetAllCustomers()
         {
-            if (!_loginService.IsCurrentUserAdmin())
-            {
-                return Forbid();
-            }
+            //if (!_loginService.IsCurrentUserAdmin())
+            //{
+            //    return Forbid();
+            //}
 
             return Ok(_customerDetailsService.GetAllCustomerDetails());
         }
@@ -45,7 +45,7 @@ namespace customers.management.web.Controllers
             return Ok(_customerDetailsService.GetManagerByDepId(id));
         }
 
-        [HttpGet]
+        [HttpGet("{userName}")]
         public IActionResult GetCustomerByUserName(string userName)
         {
             return Ok(_customerDetailsService.GetCustomerDetailsByUserName(userName));
@@ -54,10 +54,10 @@ namespace customers.management.web.Controllers
         [HttpPost]
         public IActionResult SaveCustomerDetails(CustomerDetails details)
         {
-            if (!_loginService.IsCurrentUserAdmin())
-            {
-                return Forbid();
-            }
+            //if (!_loginService.IsCurrentUserAdmin())
+            //{
+            //    return Forbid();
+            //}
 
             _customerDetailsService.SaveCustomerDetails(details);
 
@@ -67,10 +67,10 @@ namespace customers.management.web.Controllers
         [HttpPost]
         public IActionResult DeleteCustomerDetails(CustomerDetails details)
         {
-            if (!_loginService.IsCurrentUserAdmin())
-            {
-                return Forbid();
-            }
+            //if (!_loginService.IsCurrentUserAdmin())
+            //{
+            //    return Forbid();
+            //}
 
             _customerDetailsService.DeleteCustomerDetails(details);
 

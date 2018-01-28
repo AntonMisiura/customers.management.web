@@ -3,13 +3,13 @@ E:\test_task\customers.management.web\customers.management.web\bin\Debug\netcore
 E:\test_task\customers.management.web\customers.management.web\bin\Debug\netcoreapp2.0\customers.management.web.runtimeconfig.dev.json
 E:\test_task\customers.management.web\customers.management.web\bin\Debug\netcoreapp2.0\customers.management.web.dll
 E:\test_task\customers.management.web\customers.management.web\bin\Debug\netcoreapp2.0\customers.management.web.pdb
+E:\test_task\customers.management.web\customers.management.web\bin\Debug\netcoreapp2.0\customers.management.core.dll
+E:\test_task\customers.management.web\customers.management.web\bin\Debug\netcoreapp2.0\customers.management.impl.dll
+E:\test_task\customers.management.web\customers.management.web\bin\Debug\netcoreapp2.0\customers.management.core.pdb
+E:\test_task\customers.management.web\customers.management.web\bin\Debug\netcoreapp2.0\customers.management.impl.pdb
 E:\test_task\customers.management.web\customers.management.web\obj\Debug\netcoreapp2.0\customers.management.web.csprojResolveAssemblyReference.cache
 E:\test_task\customers.management.web\customers.management.web\obj\Debug\netcoreapp2.0\customers.management.web.csproj.CoreCompileInputs.cache
 E:\test_task\customers.management.web\customers.management.web\obj\Debug\netcoreapp2.0\customers.management.web.AssemblyInfoInputs.cache
 E:\test_task\customers.management.web\customers.management.web\obj\Debug\netcoreapp2.0\customers.management.web.AssemblyInfo.cs
 E:\test_task\customers.management.web\customers.management.web\obj\Debug\netcoreapp2.0\customers.management.web.dll
 E:\test_task\customers.management.web\customers.management.web\obj\Debug\netcoreapp2.0\customers.management.web.pdb
-E:\test_task\customers.management.web\customers.management.web\bin\Debug\netcoreapp2.0\customers.management.core.dll
-E:\test_task\customers.management.web\customers.management.web\bin\Debug\netcoreapp2.0\customers.management.impl.dll
-E:\test_task\customers.management.web\customers.management.web\bin\Debug\netcoreapp2.0\customers.management.core.pdb
-E:\test_task\customers.management.web\customers.management.web\bin\Debug\netcoreapp2.0\customers.management.impl.pdb

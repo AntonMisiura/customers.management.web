@@ -19,6 +19,11 @@ namespace customers.management.impl.EF.Services
             return _userRepository.GetByCustomerId(id);
         }
 
+        public User GetById(int id)
+        {
+            return _userRepository.GetById(id);
+        }
+
         public void AddUser(User user)
         {
             throw new NotImplementedException();

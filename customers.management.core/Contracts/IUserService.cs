@@ -13,6 +13,13 @@ namespace customers.management.core.Contracts
         List<User> GetUsersByCustomerId(int id);
 
         /// <summary>
+        /// get by user id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        User GetById(int id);
+
+        /// <summary>
         /// add user
         /// </summary>
         /// <param name="user"></param>

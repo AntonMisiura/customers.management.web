@@ -60,6 +60,21 @@
 			{
 				templateUrl: "views/login.html",
 				controller: "loginController"
+			})
+			.when("/",
+			{
+				templateUrl: "views/login.html",
+				controller: "loginController"
+			})
+			.when("/userPage",
+			{
+				templateUrl: "views/userPage.html",
+				controller: "userPageController"
+			})
+			.when("/adminPage",
+			{
+				templateUrl: "views/adminPage.html",
+				controller: "adminPageController"
 			});
 	}
 ]);

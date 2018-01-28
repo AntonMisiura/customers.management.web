@@ -12,10 +12,11 @@ namespace customers.management.impl.EF.Services
 {
     public class LoginService : ILoginService
     {
+        private const string RoleUser = "User";
+        private const string RoleAdmin = "Admin";
+
         private readonly AdminAccount _admin;
         private readonly IUserService _userService;
-        private const string RoleAdmin = "Admin";
-        private const string RoleUser = "User";
 
         public LoginService(IUserService userService, IConfiguration configuration)
         {
@@ -73,7 +74,7 @@ namespace customers.management.impl.EF.Services
         {
             var identity = (ClaimsPrincipal)Thread.CurrentPrincipal;
             var role = identity.Claims.Where(c => c.Type == ClaimTypes.Role)
-                .Select(c => c.Value).First();
+                .Select(c => c.Value).SingleOrDefault();
 
             return RoleAdmin.Equals(role);
         }

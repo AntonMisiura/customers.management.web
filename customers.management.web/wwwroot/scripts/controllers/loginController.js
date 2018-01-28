@@ -1,8 +1,6 @@
 ﻿Application.controller("loginController", function ($scope, $http, $location, loginService, accountService, $rootScope) {
 	$scope.logined = loginService.getStatus();
 
-	$scope.returnUrl = "";
-
 	$scope.user = {
 		UserName: "",
 		Password: ""
@@ -11,23 +9,23 @@
 	$scope.callHeaderCtrl = function() {
 		$rootScope.$emit("callHeaderCtrl", {});
 	};
-	
 
 	$scope.signIn = function () {
 		var url = "login/signin";
 		if ($scope.user !== null) {
 			$http.post(url, $scope.user).then(function successCallback(response) {
-				$scope.customerId = response.data;
+				var isAdmin = response.data.isAdmin;
+				var username = response.data.userName;
 				$scope.logined = true;
 				loginService.setStatus($scope.logined);
 
-				if (response.data === "Admin") {
-					accountService.setStatus(true);
+				if (isAdmin) {
+					$location.path("/adminPage");
 				} else {
-					accountService.setStatus(false);
+					accountService.setLogin(username);
+					$location.path("/userPage");
 				}
 
-				$location.path("/general");
 				$scope.callHeaderCtrl();
 			}, function errorCallback() {
 				alert("User not found!");
