@@ -11,6 +11,7 @@ namespace customers.management.core.Entities
         public string Phone { get; set; }
         public string Email { get; set; }
         
-        public Customer Customer { get; set; }
+        public int CustomerId { get; set; }
+        //public Customer Customer { get; set; }
     }
 }

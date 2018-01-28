@@ -4,6 +4,5 @@ namespace customers.management.core.Contracts
 {
     public interface ICustomerRepository : IRepository<Customer>
     {
-        Customer GetCustomerContactsById(int id);
     }
 }

@@ -7,8 +7,22 @@
   "targets": {
     ".NETCoreApp,Version=v2.0": {
       "customers.management.core/1.0.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Abstractions": "2.0.0.0",
+          "Microsoft.Extensions.Configuration.Abstractions": "2.0.0.0"
+        },
         "runtime": {
           "customers.management.core.dll": {}
+        }
+      },
+      "Microsoft.AspNetCore.Http.Abstractions/2.0.0.0": {
+        "runtime": {
+          "Microsoft.AspNetCore.Http.Abstractions.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Configuration.Abstractions/2.0.0.0": {
+        "runtime": {
+          "Microsoft.Extensions.Configuration.Abstractions.dll": {}
         }
       }
     }
@@ -16,6 +30,16 @@
   "libraries": {
     "customers.management.core/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.AspNetCore.Http.Abstractions/2.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.Extensions.Configuration.Abstractions/2.0.0.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }

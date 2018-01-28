@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using customers.management.core.Contracts;
 using customers.management.core.Entities;
 
@@ -14,6 +11,11 @@ namespace customers.management.impl.EF.Services
         public ContactService(IContactRepository contactRepository)
         {
             _contactRepository = contactRepository;
+        }
+
+        public List<Contact> GetByCustomerId(int id)
+        {
+            return _contactRepository.GetByCustomerId(id);
         }
 
         public void AddContact(Contact contact)

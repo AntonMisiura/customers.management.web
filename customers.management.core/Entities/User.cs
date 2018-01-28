@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using customers.management.core.Contracts;
-using customers.management.core.Extension;
+﻿using customers.management.core.Contracts;
 
 namespace customers.management.core.Entities
 {

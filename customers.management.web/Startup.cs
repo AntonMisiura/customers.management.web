@@ -37,14 +37,12 @@ namespace customers.management.web
 
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IContactRepository, ContactRepository>();
+            services.AddTransient<IManagerRepository, ManagerRepository>();
             services.AddTransient<ICustomerRepository, CustomerRepository>();
             services.AddTransient<IDepartmentRepository, DepartmentRepository>();
-            services.AddTransient<IDepartmentUserRepository, DepartmentUserRepository>();
-
-            services.AddTransient<ICustomerDetailsService, CustomerDetailsService>();
-            services.AddTransient<IManagerRepository, ManagerRepository>();
 
             services.AddTransient<ILoginService, LoginService>();
+            services.AddTransient<ICustomerDetailsService, CustomerDetailsService>();
 
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IContactService, ContactService>();

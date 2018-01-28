@@ -39,14 +39,22 @@ namespace customers.management.impl.EF.Services
 
         public CustomerDetails GetCustomerDetailsById(int id)
         {
-            var customerDetails = new CustomerDetails {Customer = _customerService.GetById(id)};
-
-            _contactService.
             //inject contact list and users list to customerDetails list
+            var departments = new HashSet<Department>();
+
+            foreach (var user in _userService.GetUsersByCustomerId(id))
+            {
+                departments.Add(user.Department);
+            }
+
+            var customerDetails = new CustomerDetails
+            {
+                Customer = _customerService.GetById(id),
+                Departments = departments.ToList()
+            };
 
             //get unique departments from users list and inject to customerDetails.Departments
-
-            return new CustomerDetails();
+            return customerDetails;
         }
 
         public CustomerDetails GetCustomerDetailsByUserName(string username)

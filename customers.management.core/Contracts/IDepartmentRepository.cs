@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using customers.management.core.Entities;
+﻿using customers.management.core.Entities;
 
 namespace customers.management.core.Contracts
 {

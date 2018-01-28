@@ -1,6 +1,7 @@
 ﻿using System.Security.Claims;
 using System.Threading.Tasks;
 using customers.management.core.Contracts;
+using customers.management.core.dto;
 using customers.management.core.Entities;
 using customers.management.web.Models;
 using Microsoft.AspNetCore.Authentication;
@@ -73,7 +74,7 @@ namespace customers.management.web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login([FromBody] UserLoginModel user)
+        public async Task<IActionResult> Login([FromBody] UserDetails user)
         {
             const string badUserNameOrPasswordMessage = "Username or password is incorrect.";
 

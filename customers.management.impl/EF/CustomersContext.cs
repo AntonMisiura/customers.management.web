@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using customers.management.core.Entities;
 
 namespace customers.management.impl.EF
@@ -19,7 +18,6 @@ namespace customers.management.impl.EF
         public DbSet<Department> Departments { get; set; }
         public DbSet<Manager> Managers { get; set; }
         //public DbSet<SchoolNumber> SchoolNumbers { get; set; }
-        //public DbSet<DepartmentUser> DepartmentUser { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -29,10 +27,10 @@ namespace customers.management.impl.EF
             modelBuilder.Entity<Department>().HasKey(k => k.Id);
             modelBuilder.Entity<Type>().HasKey(k => k.Id);
 
-            modelBuilder.Entity<Manager>()
-                .HasOne(m => m.Department)
-                .WithOne(d => d.Manager)
-                .HasForeignKey<Manager>(m => m.DepartmentId);
+            //modelBuilder.Entity<Manager>()
+            //    .HasOne(m => m.Department)
+            //    .WithOne(d => d.Manager)
+            //    .HasForeignKey<Manager>(m => m.DepartmentId);
         }
     }
 }

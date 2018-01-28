@@ -1,14 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using System.Security.Authentication;
 using System.Security.Claims;
 using System.Threading;
-using System.Threading.Tasks;
 using customers.management.core.Contracts;
 using customers.management.core.dto;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 
 namespace customers.management.impl.EF.Services

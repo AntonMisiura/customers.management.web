@@ -1,8 +1,5 @@
 ﻿using customers.management.core.Contracts;
 using customers.management.core.dto;
-using customers.management.core.Entities;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace customers.management.web.Controllers
@@ -31,15 +28,21 @@ namespace customers.management.web.Controllers
             return Ok(_customerDetailsService.GetAllCustomerDetails());
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public IActionResult GetCustomerDetailsById(int id)
         {
-            if (!_loginService.IsCurrentUserAdmin())
-            {
-                return Forbid();
-            }
+            //if (!_loginService.IsCurrentUserAdmin())
+            //{
+            //    return Forbid();
+            //}
 
             return Ok(_customerDetailsService.GetCustomerDetailsById(id));
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetManagerByDepartmentId(int id)
+        {
+            return Ok(_customerDetailsService.GetManagerByDepId(id));
         }
 
         [HttpGet]

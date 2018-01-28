@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using customers.management.core.Contracts;
+﻿using customers.management.core.Contracts;
 
 namespace customers.management.core.Entities
 {
@@ -10,8 +9,9 @@ namespace customers.management.core.Entities
         public string Name { get; set; }
         public string Address { get; set; }
 
+        public int ManagerId { get; set; }
         public Manager Manager { get; set; }
 
-        public List<User> Users { get; set; }
+        //public List<User> Users { get; set; }
     }
 }

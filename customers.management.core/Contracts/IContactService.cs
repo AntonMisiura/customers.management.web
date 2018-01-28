@@ -7,6 +7,8 @@ namespace customers.management.core.Contracts
 {
     public interface IContactService
     {
+        List<Contact> GetByCustomerId(int id);
+
         /// <summary>
         /// add contact
         /// </summary>
