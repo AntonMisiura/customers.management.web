@@ -25,7 +25,6 @@ namespace customers.management.core.Contracts
 
         Manager GetManagerByDepId(int id);
 
-
-
+        CustomerDetails GetCustomerDetailsByUserName(string username);
     }
 }

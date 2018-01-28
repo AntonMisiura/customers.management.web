@@ -10,7 +10,7 @@
 	});
 
 	$scope.logout = function () {
-		var url = "user/logout";
+		var url = "login/logout";
 		$http.get(url).then(function successCallback() {
 			$scope.isLogined = false;
 			loginService.setStatus($scope.isLogined);

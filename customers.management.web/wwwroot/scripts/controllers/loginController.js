@@ -14,7 +14,7 @@
 	
 
 	$scope.signIn = function () {
-		var url = "user/login";
+		var url = "login/signin";
 		if ($scope.user !== null) {
 			$http.post(url, $scope.user).then(function successCallback(response) {
 				$scope.customerId = response.data;

@@ -51,6 +51,16 @@ namespace customers.management.impl.EF.Services
             return users;
         }
 
+        public void AddUser(User user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EditUser(User user)
+        {
+            throw new NotImplementedException();
+        }
+
         public void SaveUsers(List<User> users)
         {
             foreach (var user in users)

@@ -13,3 +13,7 @@ E:\test_task\customers.management.web\customers.management.impl\obj\Debug\netcor
 E:\test_task\customers.management.web\customers.management.impl\obj\Debug\netcoreapp2.0\customers.management.impl.AssemblyInfo.cs
 E:\test_task\customers.management.web\customers.management.impl\obj\Debug\netcoreapp2.0\customers.management.impl.dll
 E:\test_task\customers.management.web\customers.management.impl\obj\Debug\netcoreapp2.0\customers.management.impl.pdb
+E:\test_task\customers.management.web\customers.management.impl\bin\Debug\netcoreapp2.0\Microsoft.AspNetCore.Authentication.Cookies.dll
+E:\test_task\customers.management.web\customers.management.impl\bin\Debug\netcoreapp2.0\Microsoft.AspNetCore.Http.Abstractions.dll
+E:\test_task\customers.management.web\customers.management.impl\bin\Debug\netcoreapp2.0\Microsoft.AspNetCore.Authentication.Cookies.xml
+E:\test_task\customers.management.web\customers.management.impl\bin\Debug\netcoreapp2.0\Microsoft.AspNetCore.Http.Abstractions.xml
