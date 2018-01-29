@@ -20,22 +20,22 @@ namespace customers.management.core.Contracts
         User GetById(int id);
 
         /// <summary>
-        /// add user
+        /// edit and delete users
         /// </summary>
-        /// <param name="user"></param>
-        void AddUser(User user);
-
-        /// <summary>
-        /// edit user
-        /// </summary>
-        /// <param name="user"></param>
-        void EditUser(User user);
+        /// <param name="users"></param>
+        void SaveUsers(List<User> users);
 
         /// <summary>
         /// delete user by id
         /// </summary>
         /// <param name="id"></param>
         void DeleteUser(int id);
+
+        /// <summary>
+        /// delete list of users
+        /// </summary>
+        /// <param name="users"></param>
+        void DeleteUsers(List<User> users);
 
         /// <summary>
         /// get user by login

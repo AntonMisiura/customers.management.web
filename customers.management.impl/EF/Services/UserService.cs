@@ -24,16 +24,6 @@ namespace customers.management.impl.EF.Services
             return _userRepository.GetById(id);
         }
 
-        public void AddUser(User user)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void EditUser(User user)
-        {
-            throw new NotImplementedException();
-        }
-
         public void SaveUsers(List<User> users)
         {
             foreach (var user in users)
@@ -52,6 +42,14 @@ namespace customers.management.impl.EF.Services
         public void DeleteUser(int id)
         {
             _userRepository.Delete(id);
+        }
+
+        public void DeleteUsers(List<User> users)
+        {
+            foreach (var user in users)
+            {
+                if (user.Id != null) _userRepository.Delete((int) user.Id);
+            }
         }
 
         public User GetByLogin(string login)
