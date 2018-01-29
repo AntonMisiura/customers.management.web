@@ -19,14 +19,22 @@
 
 	$scope.types = [
 		{
-			Id: 1,
-			Name: "Municipality"
+			id: 1,
+			name: "Municipality"
 		},
 		{
-			Id: 2,
-			Name: "Business"
+			id: 2,
+			name: "Business"
 		}];
-	$scope.selectedType = "";
+
+	$scope.showCustomerTypes = function (id) {
+		if (id === 1) {
+			return $scope.types[0].name;
+		} else {
+			return $scope.types[1].name;
+		}
+	};
+
 
 	$scope.initCustomers = function () {
 		var url = "customerdetails/getallcustomers/";
@@ -92,7 +100,7 @@
 						Email: $scope.customers[i].customer.email,
 						Phone: $scope.customers[i].customer.phone,
 						Comments: $scope.customers[i].customer.comments,
-						TypeId: 2
+						TypeId: $scope.customers[i].customer.typeId
 					};
 
 					var url = "customer/addcustomer";

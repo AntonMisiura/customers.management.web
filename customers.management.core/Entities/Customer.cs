@@ -21,6 +21,8 @@ namespace customers.management.core.Entities
         public int TypeId { get; set; }
         public Type Type { get; set; }
 
+        public SchoolNumber NumbersOfSchool { get; set; }
+
         public List<User> Users { get; set; }
         public List<Contact> Contacts { get; set; }
     }

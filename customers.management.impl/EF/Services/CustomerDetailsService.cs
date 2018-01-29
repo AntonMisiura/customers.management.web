@@ -39,7 +39,6 @@ namespace customers.management.impl.EF.Services
 
         public CustomerDetails GetCustomerDetailsById(int id)
         {
-            //inject contact list and users list to customerDetails list
             var departments = new HashSet<Department>();
 
             foreach (var user in _userService.GetUsersByCustomerId(id))
@@ -57,7 +56,6 @@ namespace customers.management.impl.EF.Services
                 Contacts = _contactService.GetByCustomerId(id)
             };
 
-            //get unique departments from users list and inject to customerDetails.Departments
             return customerDetails;
         }
 
@@ -75,7 +73,7 @@ namespace customers.management.impl.EF.Services
 
         public void SaveCustomerDetails(CustomerDetails customerDetails)
         {
-            //TODO: in transaction
+            //TODO: transaction scope
 
             var users = customerDetails.Users;
             var contacts = customerDetails.Contacts;
@@ -89,7 +87,7 @@ namespace customers.management.impl.EF.Services
 
         public void DeleteCustomerDetails(CustomerDetails customerDetails)
         {
-            //TODO: in transaction
+            //TODO: transaction scope
             var users = customerDetails.Users;
             var contacts = customerDetails.Contacts;
             var departments = customerDetails.Departments;

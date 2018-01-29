@@ -54,31 +54,34 @@
 	<br/>
 	<table class="table">
 		<thead>
-		<tr style="text-align: center; vertical-align: middle">
-			<th>
-				<a href="">#</a>
-			</th>
+			<tr style="text-align: center; vertical-align: middle">
+				<th>
+					<a href="">#</a>
+				</th>
 
-			<th>
-				<a href="">Name</a>
-			</th>
+				<th>
+					<a href="">Name</a>
+				</th>
 
-			<th>
-				<a href="">Address</a>
-			</th>
+				<th>
+					<a href="">Address</a>
+				</th>
 
-			<th>
-				<a href="">Email</a>
-			</th>
+				<th>
+					<a href="">Email</a>
+				</th>
 
-			<th>
-				<a href="">Phone</a>
-			</th>
+				<th>
+					<a href="">Phone</a>
+				</th>
 
-			<th>
-				<a href="">Comments</a>
-			</th>
-		</tr>
+				<th>
+					<a href="">Comments</a>
+				</th>
+				<th>
+					<a href="">Type</a>
+				</th>
+			</tr>
 		</thead>
 
 		<tbody>
@@ -125,6 +128,20 @@
 				       placeholder="Comments"
 				       ng-disabled="!editCust"
 				       ng-model="item.customer.comments" />
+			</td>
+			<td>
+				<div ng-hide="editCust">
+					{{showCustomerTypes(item.customer.typeId)}}
+				</div>
+				<select class="form-control white-input-no-border"
+				        ng-model="item.customer.typeId"
+				        style="width: 98% !important;"
+				        ng-hide="!editCust">
+					<option ng-repeat="t in types"
+					        value="{{t.id}}">
+						{{t.name}}
+					</option>
+				</select>
 			</td>
 		</tr>
 		</tbody>
