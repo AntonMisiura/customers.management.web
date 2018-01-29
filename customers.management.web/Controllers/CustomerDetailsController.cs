@@ -52,7 +52,7 @@ namespace customers.management.web.Controllers
         }
 
         [HttpPost]
-        public IActionResult SaveCustomerDetails(CustomerDetails details)
+        public IActionResult SaveCustomerDetails([FromBody] CustomerDetails details)
         {
             //if (!_loginService.IsCurrentUserAdmin())
             //{
@@ -65,7 +65,7 @@ namespace customers.management.web.Controllers
         }
 
         [HttpPost]
-        public IActionResult DeleteCustomerDetails(CustomerDetails details)
+        public IActionResult DeleteCustomerDetails([FromBody] CustomerDetails details)
         {
             //if (!_loginService.IsCurrentUserAdmin())
             //{

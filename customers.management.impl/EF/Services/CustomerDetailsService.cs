@@ -81,9 +81,10 @@ namespace customers.management.impl.EF.Services
             var contacts = customerDetails.Contacts;
             var departments = customerDetails.Departments;
 
-            _userService.SaveUsers(users);
             _contactService.SaveContacts(contacts);
+
             _departmentService.SaveDepartments(departments);
+            _userService.SaveUsers(users);
         }
 
         public void DeleteCustomerDetails(CustomerDetails customerDetails)
@@ -91,13 +92,12 @@ namespace customers.management.impl.EF.Services
             //TODO: in transaction
             var users = customerDetails.Users;
             var contacts = customerDetails.Contacts;
-            var customer = customerDetails.Customer;
             var departments = customerDetails.Departments;
 
-            _userService.DeleteUsers(users);
             _contactService.DeleteContacts(contacts);
+
+            _userService.DeleteUsers(users);
             _departmentService.DeleteDepartments(departments);
-            if (customer.Id != null) _customerService.DeleteCustomer((int) customer.Id);
         }
     }
 }

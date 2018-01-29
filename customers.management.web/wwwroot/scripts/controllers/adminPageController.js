@@ -10,8 +10,23 @@
 	$scope.editUs = false;
 	$scope.editCont = false;
 	$scope.editDeps = false;
+	$scope.saveCustomerTrue = false;;
 
+	$scope.deletedUsers = [];
+	$scope.deletedContacts = [];
+	$scope.deletedDepartments = [];
+	$scope.addedCustomer = {};
 
+	$scope.types = [
+		{
+			Id: 1,
+			Name: "Municipality"
+		},
+		{
+			Id: 2,
+			Name: "Business"
+		}];
+	$scope.selectedType = "";
 
 	$scope.initCustomers = function () {
 		var url = "customerdetails/getallcustomers/";
@@ -36,7 +51,7 @@
 		});
 	};
 
-	$scope.getManagers = function() {
+	$scope.getManagers = function () {
 		for (var i = 0; i < $scope.departments.length; i++) {
 			for (var j = 0; j < $scope.users.length; j++) {
 				if ($scope.departments[i].userId === $scope.users[j].id) {
@@ -46,7 +61,7 @@
 		}
 	};
 
-	$scope.showManager = function(userId) {
+	$scope.showManager = function (userId) {
 		for (var i = 0; i < $scope.users.length; i++) {
 			if ($scope.users[i].id === userId) {
 				return $scope.users[i].name;
@@ -62,40 +77,81 @@
 		}
 	};
 
+	$scope.saveCustomer = function () {
+		for (var i = 0; i < $scope.customers.length; i++) {
+			if ($scope.customers[i].customer.id === null) {
+				if ($scope.customers[i].customer.name !== null &&
+					$scope.customers[i].customer.address !== null &&
+					$scope.customers[i].customer.email !== null &&
+					$scope.customers[i].customer.phone !== null) {
+
+					$scope.addedCustomer = {
+						Id: null,
+						Name: $scope.customers[i].customer.name,
+						Address: $scope.customers[i].customer.address,
+						Email: $scope.customers[i].customer.email,
+						Phone: $scope.customers[i].customer.phone,
+						Comments: $scope.customers[i].customer.comments,
+						TypeId: 2
+					};
+
+					var url = "customer/addcustomer";
+					$http.post(url, $scope.addedCustomer).then(function () {
+						$scope.initCustomers();
+						$scope.saveCustomerTrue = false;
+					}, function () {
+					});
+				} else {
+					alert("All fields are required except comments!");
+				}
+			}
+		}
+	};
+
 	$scope.addCustomer = function () {
-		$scope.customers.unshift({
-			Id: null, Name: null, Address: null,
-			Email: null, Phone: null,
-			Comments: null
-		});
+		var customer = {
+			customer: {
+				id: null, name: null, address: null,
+				email: null, phone: null,
+				comments: null
+			},
+			departments: null,
+			comments: null,
+			users: null
+		}
+		$scope.customers.unshift(customer);
+		console.log($scope.customers);
+		$scope.saveCustomerTrue = true;
 	};
 
 	$scope.addContact = function () {
 		$scope.contacts.unshift({
-			Id: null, Name: null, Role: null,
-			Phone: null, CustomerId: $scope.selectedCustomerId
+			id: null, name: null, role: null,
+			phone: null, customerId: $scope.selectedCustomerId
 		});
 	};
 
 	$scope.addDepartment = function () {
 		$scope.departments.unshift({
-			Id: null, Name: null, Address: null,
-			Manager: null
+			id: null, name: null, address: null,
+			manager: null
 		});
 	};
 
 	$scope.addUser = function () {
 		$scope.users.unshift({
-			Id: null, Name: null, Email: null,
-			Mobile: null, UserName: null,
-			Password: null, Department: null
+			id: null, name: null, email: null,
+			mobile: null, userName: null,
+			password: null, department: null,
+			customerId: $scope.selectedCustomerId
 		});
 	};
 
 
-	$scope.deleteUser = function(index, id) {
+	$scope.deleteUser = function (index, id) {
 		for (var i = 0; i < $scope.users.length; i++) {
 			if (id === $scope.users[i].id) {
+				$scope.deletedUsers.push($scope.users[i]);
 				$scope.users.splice(i, 1);
 			}
 			else if (id === null && index === i) {
@@ -107,6 +163,7 @@
 	$scope.deleteContact = function (index, id) {
 		for (var i = 0; i < $scope.contacts.length; i++) {
 			if (id === $scope.contacts[i].id) {
+				$scope.deletedContacts.push($scope.contacts[i]);
 				$scope.contacts.splice(i, 1);
 			}
 			else if (id === null && index === i) {
@@ -118,6 +175,7 @@
 	$scope.deleteDepartment = function (index, id) {
 		for (var i = 0; i < $scope.departments.length; i++) {
 			if (id === $scope.departments[i].id) {
+				$scope.deletedDepartments.push($scope.departments[i]);
 				$scope.departments.splice(i, 1);
 			}
 			else if (id === null && index === i) {
@@ -128,7 +186,12 @@
 
 	$scope.deleteCustomer = function (index, id) {
 		for (var i = 0; i < $scope.customers.length; i++) {
-			if (id === $scope.customers[i].id) {
+			if (id === $scope.customers[i].customer.id) {
+				var url = "customer/deletecustomer/" + $scope.customers[i].customer.id;
+				$http.get(url).then(function successCallback() {
+					$scope.initCustomers();
+				}, function errorCallback() {
+				});
 				$scope.customers.splice(i, 1);
 			}
 			else if (id === null && index === i) {
@@ -137,7 +200,7 @@
 		}
 	};
 
-	$scope.editCustomers = function() {
+	$scope.editCustomers = function () {
 		$scope.editCust = true;
 	};
 
@@ -153,7 +216,7 @@
 		$scope.editDeps = true;
 	};
 
-	$scope.cancel = function() {
+	$scope.cancel = function () {
 		$scope.editCust = false;
 		$scope.editCont = false;
 		$scope.editUs = false;
@@ -163,17 +226,65 @@
 		$scope.findAndRemoveAdded($scope.contacts);
 		$scope.findAndRemoveAdded($scope.customers);
 		$scope.findAndRemoveAdded($scope.departments);
+		$scope.getCustomerById();
 	};
 
-	$scope.findAndRemoveAdded = function(list) {
+	$scope.findAndRemoveAdded = function (list) {
 		for (var i = 0; i < list.length; i++) {
-			if (list[i].Id === null) {
+			if (list[i].id === null) {
 				list.splice(i, 1);
 			}
 		}
 	};
 
-	$scope.apply = function() {
+	$scope.customerDetailsToSave = {};
 
+	$scope.apply = function () {
+		var customer = {};
+		for (var i = 0; i < $scope.customers.length; i++) {
+			if ($scope.selectedCustomerId === $scope.customers[i].id) {
+				customer = $scope.customers[i];
+				
+				$scope.modifiedcustomer = {
+					id: $scope.selectedCustomerId,
+					name: $scope.customers[i].name,
+					address: $scope.customers[i].address,
+					email: $scope.customers[i].email,
+					phone: $scope.customers[i].phone,
+					comments: $scope.customers[i].comments,
+					typeId: 2
+				};
+			}
+		}
+
+		$scope.customerDetailsToSave = {
+			Customer: customer,
+			Departments: $scope.departments,
+			Users: $scope.users,
+			Contacts: $scope.contacts
+		};
+
+		$scope.customerDetailsToDel = {
+			Сustomer: customer,
+			Departments: $scope.deletedDepartments,
+			Users: $scope.deletedUsers,
+			Contacts: $scope.deletedContacts
+		};
+
+		var saveurl = "customerdetails/savecustomerdetails";
+		$http.post(saveurl, $scope.customerDetailsToSave).then(function () {
+			$scope.initCustomers();
+		}, function () {
+		});
+
+
+
+		var delurl = "customerdetails/deletecustomerdetails";
+		$http.post(delurl, $scope.customerDetailsToDel).then(function () {
+			$scope.initCustomers();
+		}, function () {
+		});
+
+		$scope.initCustomers();
 	};
 });

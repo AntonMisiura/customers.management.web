@@ -17,7 +17,8 @@ namespace customers.management.core.Entities
         [Required]
         public string Phone { get; set; }
         public string Comments { get; set; }
-
+        
+        public int TypeId { get; set; }
         public Type Type { get; set; }
 
         public List<User> Users { get; set; }
