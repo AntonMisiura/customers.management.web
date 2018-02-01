@@ -1,18 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using customers.management.core.Contracts;
-using customers.management.core.Entities;
 using customers.management.impl.EF;
 using customers.management.impl.EF.Repo;
 using customers.management.impl.EF.Services;
-using customers.management.web.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -41,6 +35,7 @@ namespace customers.management.web
             services.AddTransient<ICustomerRepository, CustomerRepository>();
             services.AddTransient<IDepartmentRepository, DepartmentRepository>();
 
+            services.AddTransient<TypeInitializer>();
             services.AddTransient<ILoginService, LoginService>();
             services.AddTransient<ICustomerDetailsService, CustomerDetailsService>();
 
@@ -63,7 +58,8 @@ namespace customers.management.web
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env,
-            ILoggerFactory loggerFactory, IServiceProvider serviceProvider)
+            ILoggerFactory loggerFactory, IServiceProvider serviceProvider,
+            TypeInitializer typeSeeder)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -80,6 +76,8 @@ namespace customers.management.web
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            typeSeeder.Seed().Wait();
         }
     }
 }

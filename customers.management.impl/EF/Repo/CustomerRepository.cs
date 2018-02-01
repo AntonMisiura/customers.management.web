@@ -1,6 +1,5 @@
 ﻿using customers.management.core.Contracts;
 using customers.management.core.Entities;
-using Microsoft.EntityFrameworkCore;
 
 namespace customers.management.impl.EF.Repo
 {

@@ -11,6 +11,11 @@ namespace customers.management.impl.EF
             
         }
 
+        public CustomersContext()
+        {
+            
+        }
+
         public DbSet<Type> Types { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Contact> Contacts { get; set; }

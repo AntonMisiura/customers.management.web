@@ -10,3 +10,4 @@ E:\test_task\customers.management.web\customers.management.core\bin\Debug\netcor
 E:\test_task\customers.management.web\customers.management.core\bin\Debug\netcoreapp2.0\Microsoft.Extensions.Configuration.Abstractions.dll
 E:\test_task\customers.management.web\customers.management.core\bin\Debug\netcoreapp2.0\Microsoft.AspNetCore.Http.Abstractions.xml
 E:\test_task\customers.management.web\customers.management.core\bin\Debug\netcoreapp2.0\Microsoft.Extensions.Configuration.Abstractions.xml
+E:\test_task\customers.management.web\customers.management.core\obj\Debug\netcoreapp2.0\customers.management.core.csprojResolveAssemblyReference.cache

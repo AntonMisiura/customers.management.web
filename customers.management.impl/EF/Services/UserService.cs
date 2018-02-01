@@ -25,30 +25,36 @@ namespace customers.management.impl.EF.Services
 
         public void SaveUsers(List<User> users)
         {
-            foreach (var user in users)
+            if (users != null)
             {
-                if (user.Id == null)
+                foreach (var user in users)
                 {
-                    _userRepository.Add(user);
+                    if (user.Id == null)
+                    {
+                        _userRepository.Add(user);
+                    }
+                    else
+                    {
+                        _userRepository.Edit(user);
+                    }
                 }
-                else
-                {
-                    _userRepository.Edit(user);
-                }
-            }
 
-            _userRepository.Save();
+                _userRepository.Save();
+            }
         }
 
 
         public void DeleteUsers(List<User> users)
         {
-            foreach (var user in users)
+            if (users != null)
             {
-                if (user.Id != null) _userRepository.Delete((int) user.Id);
-            }
+                foreach (var user in users)
+                {
+                    if (user.Id != null) _userRepository.Delete((int)user.Id);
+                }
 
-            _userRepository.Save();
+                _userRepository.Save();
+            }
         }
 
         public User GetByLogin(string login)

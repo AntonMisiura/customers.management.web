@@ -20,29 +20,35 @@ namespace customers.management.impl.EF.Services
 
         public void SaveContacts(List<Contact> contacts)
         {
-            foreach (var contact in contacts)
+            if (contacts != null)
             {
-                if (contact.Id == null)
+                foreach (var contact in contacts)
                 {
-                    _contactRepository.Add(contact);
+                    if (contact.Id == null)
+                    {
+                        _contactRepository.Add(contact);
+                    }
+                    else
+                    {
+                        _contactRepository.Edit(contact);
+                    }
                 }
-                else
-                {
-                    _contactRepository.Edit(contact);
-                }
-            }
 
-            _contactRepository.Save();
+                _contactRepository.Save();
+            }
         }
 
         public void DeleteContacts(List<Contact> contacts)
         {
-            foreach (var contact in contacts)
+            if (contacts != null)
             {
-                if (contact.Id != null) _contactRepository.Delete((int) contact.Id);
-            }
+                foreach (var contact in contacts)
+                {
+                    if (contact.Id != null) _contactRepository.Delete((int)contact.Id);
+                }
 
-            _contactRepository.Save();
+                _contactRepository.Save();
+            }
         }
     }
 }

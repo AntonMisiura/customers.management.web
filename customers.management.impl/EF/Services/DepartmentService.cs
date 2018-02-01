@@ -15,29 +15,35 @@ namespace customers.management.impl.EF.Services
 
         public void SaveDepartments(List<Department> departments)
         {
-            foreach (var dep in departments)
+            if (departments != null)
             {
-                if (dep.Id == null)
+                foreach (var dep in departments)
                 {
-                    _departmentRepository.Add(dep);
+                    if (dep.Id == null)
+                    {
+                        _departmentRepository.Add(dep);
+                    }
+                    else
+                    {
+                        _departmentRepository.Edit(dep);
+                    }
                 }
-                else
-                {
-                    _departmentRepository.Edit(dep);
-                }
-            }
 
-            _departmentRepository.Save();
+                _departmentRepository.Save();
+            }
         }
 
         public void DeleteDepartments(List<Department> departments)
         {
-            foreach (var dep in departments)
+            if (departments != null)
             {
-                if (dep.Id != null) _departmentRepository.Delete((int) dep.Id);
-            }
+                foreach (var dep in departments)
+                {
+                    if (dep.Id != null) _departmentRepository.Delete((int)dep.Id);
+                }
 
-            _departmentRepository.Save();
+                _departmentRepository.Save();
+            }
         }
     }
 }
