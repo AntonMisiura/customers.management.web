@@ -26,12 +26,6 @@ namespace customers.management.core.Contracts
         void SaveUsers(List<User> users);
 
         /// <summary>
-        /// delete user by id
-        /// </summary>
-        /// <param name="id"></param>
-        void DeleteUser(int id);
-
-        /// <summary>
         /// delete list of users
         /// </summary>
         /// <param name="users"></param>

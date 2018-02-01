@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using customers.management.core.Contracts;
 using customers.management.core.Entities;
 

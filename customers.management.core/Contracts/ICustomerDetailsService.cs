@@ -21,6 +21,8 @@ namespace customers.management.core.Contracts
 
         void SaveCustomerDetails(CustomerDetails customerDetails);
 
+        void AddCustomerDetailses(CustomerDetails customerDetails);
+
         void DeleteCustomerDetails(CustomerDetails customerDetails);
 
         Manager GetManagerByDepId(int id);

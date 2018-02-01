@@ -31,11 +31,8 @@ namespace customers.management.impl.EF.Services
                     _contactRepository.Edit(contact);
                 }
             }
-        }
 
-        public void DeleteContact(int id)
-        {
-            _contactRepository.Delete(id);
+            _contactRepository.Save();
         }
 
         public void DeleteContacts(List<Contact> contacts)
@@ -44,6 +41,8 @@ namespace customers.management.impl.EF.Services
             {
                 if (contact.Id != null) _contactRepository.Delete((int) contact.Id);
             }
+
+            _contactRepository.Save();
         }
     }
 }

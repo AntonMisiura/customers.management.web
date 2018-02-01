@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using customers.management.core.Contracts;
 using customers.management.core.Entities;
 
@@ -37,12 +36,10 @@ namespace customers.management.impl.EF.Services
                     _userRepository.Edit(user);
                 }
             }
+
+            _userRepository.Save();
         }
 
-        public void DeleteUser(int id)
-        {
-            _userRepository.Delete(id);
-        }
 
         public void DeleteUsers(List<User> users)
         {
@@ -50,6 +47,8 @@ namespace customers.management.impl.EF.Services
             {
                 if (user.Id != null) _userRepository.Delete((int) user.Id);
             }
+
+            _userRepository.Save();
         }
 
         public User GetByLogin(string login)

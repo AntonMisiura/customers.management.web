@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using customers.management.core.Contracts;
 using customers.management.core.Entities;
 
@@ -27,11 +26,8 @@ namespace customers.management.impl.EF.Services
                     _departmentRepository.Edit(dep);
                 }
             }
-        }
 
-        public void DeleteDepartment(int id)
-        {
-            _departmentRepository.Delete(id);
+            _departmentRepository.Save();
         }
 
         public void DeleteDepartments(List<Department> departments)
@@ -40,6 +36,8 @@ namespace customers.management.impl.EF.Services
             {
                 if (dep.Id != null) _departmentRepository.Delete((int) dep.Id);
             }
+
+            _departmentRepository.Save();
         }
     }
 }

@@ -4,7 +4,7 @@ namespace customers.management.core.Entities
 {
     public class User : IEntity
     {
-        public int? Id { get; set; }
+        public int Id { get; set; }
         public int CustomerId { get; set; }
 
         public string Name { get; set; }

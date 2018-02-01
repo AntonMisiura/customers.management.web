@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using customers.management.core.Contracts;
+﻿using customers.management.core.Contracts;
 using customers.management.core.Entities;
 using Microsoft.EntityFrameworkCore;
 

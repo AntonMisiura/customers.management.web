@@ -32,6 +32,18 @@ namespace customers.management.impl.EF.Services
             return _managerRepository.GetByDepartmentId(id);
         }
 
+        public void AddCustomerDetailses(CustomerDetails customerDetails)
+        {
+            //transaction
+            _customerService.AddCustomer(customerDetails.Customer);
+
+            _contactService.SaveContacts(customerDetails.Contacts);
+
+            _departmentService.SaveDepartments(customerDetails.Departments);
+
+            _userService.SaveUsers(customerDetails.Users);
+        }
+
         public List<CustomerDetails> GetAllCustomerDetails()
         {
             return _customerService.GetAll().Select(cust => new CustomerDetails {Customer = cust}).ToList();

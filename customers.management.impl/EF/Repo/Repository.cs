@@ -31,15 +31,11 @@ namespace customers.management.impl.EF.Repo
             {
                 Context.Set<T>().Add(t);
             }
-
-            Save();
         }
 
         public void Edit(T t)
         {
             Context.Set<T>().Update(t);
-
-            Save();
         }
 
         public void Delete(int id)
@@ -54,7 +50,6 @@ namespace customers.management.impl.EF.Repo
                 }
 
                 Context.Set<T>().Remove(entity);
-                Save();
             }
             catch (DbException dbEx)
             {

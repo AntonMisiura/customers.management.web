@@ -19,12 +19,6 @@ namespace customers.management.core.Contracts
         void SaveContacts(List<Contact> contacts);
 
         /// <summary>
-        /// delete contact by its id
-        /// </summary>
-        /// <param name="id"></param>
-        void DeleteContact(int id);
-
-        /// <summary>
         /// delete list of contacts
         /// </summary>
         /// <param name="contacts"></param>

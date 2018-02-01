@@ -12,12 +12,6 @@ namespace customers.management.core.Contracts
         void SaveDepartments(List<Department> departments);
 
         /// <summary>
-        /// delete department
-        /// </summary>
-        /// <param name="id"></param>
-        void DeleteDepartment(int id);
-
-        /// <summary>
         /// delete list of departments
         /// </summary>
         /// <param name="departments"></param>
