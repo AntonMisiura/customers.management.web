@@ -1,0 +1,361 @@
+﻿<div ng-controller="addCustomerDetailsController">
+	<div class="row" style="margin-right: 15px; margin-left: 15px; margin-top: 50px;">
+		<div class="col-md-12">
+			<div class="card" style="min-height: 300px!important;">
+				<div class="card-header">
+					<h4 class="card-title">Customer Details</h4>
+				</div>
+				<div class="card-content" style="padding: 0 15px 10px 15px;">
+					<div class="row">
+						<div class="col-md-12" style="margin-top: 150px;">
+							<form class="form-group" style="text-align: center;" name="addCustomerForm">
+								<div class="form-inline">
+									<div class="form-group">
+										<label for="customerName">Name*</label>
+									</div>
+									<div class="form-group">
+										<input type="text" class="form-control white-input-no-border" id="customerName"
+										       ng-model="custName" required/>
+									</div>
+								</div>
+								<div class="form-inline">
+									<div class="form-group">
+										<label for="customerAddress">Address*</label>
+									</div>
+									<div class="form-group">
+										<input type="text" class="form-control white-input-no-border" id="customerAddress"
+										       ng-model="custAddress" required/>
+									</div>
+								</div>
+								<div class="form-inline">
+									<div class="form-group">
+										<label for="customerEmail">Email*</label>
+									</div>
+									<div class="form-group">
+										<input type="text" class="form-control white-input-no-border" id="customerEmail"
+										       ng-model="custEmail" required/>
+									</div>
+								</div>
+								<div class="form-inline">
+									<div class="form-group">
+										<label for="customerPhone">Phone*</label>
+									</div>
+									<div class="form-group">
+										<input type="text" class="form-control white-input-no-border" id="customerPhone"
+										       ng-model="custPhone" required/>
+									</div>
+								</div>
+								<div class="form-inline">
+									<div class="form-group">
+										<label for="customerComments">Comments</label>
+									</div>
+									<div class="form-group">
+										<input type="text" class="form-control white-input-no-border" id="customerComments"
+										       ng-model="custComments"/>
+									</div>
+								</div>
+								<div class="form-inline">
+									<div class="form-group">
+										<label for="customerType">Type*</label>
+									</div>
+									<div class="form-group">
+										<select class="form-control white-input-no-border"
+										        id="customerType"
+										        ng-model="selectedTypeId"
+												ng-change="showSchoolNumbers();"
+										        style="width: 98% !important;">
+											<option ng-repeat="t in types"
+											        value="{{t.id}}">
+												{{t.name}}
+											</option>
+										</select>
+									</div>									
+								</div>
+								
+								<div class="form-inline" ng-show="ifMunicipality">
+									<div class="form-group">
+										<label for="schoolNumbers">Number of schools</label>
+									</div>
+									<div class="form-group">
+										<input type="number" class="form-control white-input-no-border" 
+										       ng-model="custSchoolNumber"
+										       id="schoolNumbers"
+											   style="width: 80px;"/>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+					
+					
+				<hr/>
+				<div class="card-header">
+					<h4 class="card-title">Customer Contacts</h4>
+					<div class="pull-right">
+						<button class="btn btn-facebook btn-fill btn-sm"
+						        ng-click="addContact();">
+							Add Contact
+						</button>
+					</div>
+				</div>
+				<div class="card-content table-responsive table-full-width">
+					<table class="table">
+						<thead>
+						<tr style="text-align: center; vertical-align: middle">
+							<th>
+								<a href="">#</a>
+							</th>
+
+							<th>
+								<a href="">Name</a>
+							</th>
+
+							<th>
+								<a href="">Role</a>
+							</th>
+
+							<th>
+								<a href="">Email</a>
+							</th>
+
+							<th>
+								<a href="">Phone</a>
+							</th>
+						</tr>
+						</thead>
+
+						<tbody>
+						<tr style="text-align: center; vertical-align: middle"
+						    ng-repeat="contact in addedContacts track by $index">
+							<td>
+								<form class="form-inline">
+									<div class="form-group" style="width: 15% !important;">
+										{{$index+1}}
+									</div>
+									<div class="form-group" style="width: 20% !important;">
+										<a ng-click="deleteContact($index);">
+											<i class="fa fa-trash" aria-hidden="true"></i>
+										</a>
+									</div>
+								</form>
+							</td>
+							<td>
+								<input type="text" class="form-control white-input-no-border"
+								       placeholder="Name"
+								       ng-model="contact.name"/>
+							</td>
+							<td>
+								<input type="text" class="form-control white-input-no-border"
+								       placeholder="Role"
+								       ng-model="contact.role" />
+							</td>
+							<td>
+								<input type="text" class="form-control white-input-no-border"
+								       placeholder="Email"
+								       ng-model="contact.email" />
+							</td>
+							<td>
+								<input type="text" class="form-control white-input-no-border"
+								       placeholder="Phone"
+								       ng-model="contact.phone" />
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+					
+				<hr/>
+				<div class="card-header">
+					<h4 class="card-title">Customer Departments</h4>
+					<div class="pull-right">
+						<button class="btn btn-facebook btn-fill btn-sm"
+						        ng-click="addDepartment();">
+							Add Department
+						</button>
+					</div>
+				</div>
+				<div class="card-content" style="padding: 0 15px 10px 15px;">
+					<div class="card-content table-responsive table-full-width">
+						<table class="table">
+							<thead>
+							<tr style="text-align: center; vertical-align: middle">
+								<th>
+									<a href="">#</a>
+								</th>
+
+								<th>
+									<a href="">Name</a>
+								</th>
+
+								<th>
+									<a href="">Address</a>
+								</th>
+
+								<th>
+									<a href="">Manager</a>
+								</th>
+							</tr>
+							</thead>
+
+							<tbody>
+							<tr style="text-align: center; vertical-align: middle"
+							    ng-repeat="dep in addedDepartments track by $index">
+								<td>
+									<form class="form-inline">
+										<div class="form-group" style="width: 15% !important;">
+											{{$index+1}}											
+										</div>
+										<div class="form-group" style="width: 20% !important;">
+											<a ng-click="deleteDepartment($index);">
+												<i class="fa fa-trash" aria-hidden="true"></i>
+											</a>
+										</div>
+									</form>
+								</td>
+								<td>
+									<input type="text" class="form-control white-input-no-border"
+									       placeholder="Name"
+									       ng-model="dep.name" />
+								</td>
+								<td>
+									<input type="text" class="form-control white-input-no-border"
+									       placeholder="Address"
+									       ng-model="dep.address" />
+								</td>
+								<td>
+									<select class="form-control white-input-no-border"
+									        ng-model="dep.manager.userId"
+									        style="width: 98% !important;">
+										<option selected="?"></option>	
+										<option ng-repeat="user in addedUsers"
+										        value="{{user.id}}">
+											{{user.name}}
+										</option>
+									</select>
+								</td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+					
+
+				<hr/>
+				<div class="card-header">
+					<h4 class="card-title">Customer Users</h4>
+					<div class="pull-right">
+						<button class="btn btn-facebook btn-fill btn-sm"
+						        ng-click="addUser();">
+							Add User
+						</button>
+					</div>
+				</div>
+				<div class="card-content" style="padding: 0 15px 10px 15px;">
+					<div class="card-content table-responsive table-full-width">
+						<table class="table">
+							<thead>
+							<tr style="text-align: center; vertical-align: middle">
+								<th>
+									<a href="">#</a>
+								</th>
+
+								<th>
+									<a href="">Name</a>
+								</th>
+
+								<th>
+									<a href="">Email</a>
+								</th>
+
+								<th>
+									<a href="">Mobile</a>
+								</th>
+
+								<th>
+									<a href="">UserName</a>
+								</th>
+
+								<th>
+									<a href="">Password</a>
+								</th>
+
+								<th>
+									<a href="">Department</a>
+								</th>
+							</tr>
+							</thead>
+
+							<tbody>
+							<tr style="text-align: center; vertical-align: middle"
+							    ng-repeat="user in addedUsers track by $index">
+								<td>
+									<form class="form-inline">
+										<div class="form-group" style="width: 15% !important;">
+											{{$index+1}}											
+										</div>
+										<div class="form-group" style="width: 20% !important;">
+											<a ng-click="deleteUser($index);">
+												<i class="fa fa-trash" aria-hidden="true"></i>
+											</a>
+										</div>
+									</form>
+								</td>
+								<td>
+									<input type="text" class="form-control white-input-no-border"
+									       placeholder="Name"
+									       ng-model="user.name" />
+								</td>
+								<td>
+									<input type="text" class="form-control white-input-no-border"
+									       placeholder="Email"
+									       ng-model="user.email" />
+								</td>
+								<td>
+									<input type="text" class="form-control white-input-no-border"
+									       placeholder="Mobile"
+									       ng-model="user.mobile" />
+								</td>
+								<td>
+									<input type="text" class="form-control white-input-no-border"
+									       placeholder="userName"
+									       ng-model="user.userName" />
+								</td>
+								<td>
+									<input type="text" class="form-control white-input-no-border"
+									       placeholder="Password"
+									       ng-model="user.password" />
+								</td>
+								<td>
+									<select class="form-control white-input-no-border"
+									        ng-model="user.department.id"
+									        style="width: 98% !important;">
+										<option selected="?"></option>										
+										<option ng-repeat="d in addedDepartments"
+										        value="{{d.id}}">
+											{{d.name}}
+										</option>
+									</select>
+								</td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+					
+
+				<div class="form-inline" 
+				     style="margin-top: 100px; text-align: center;">
+					<button class="btn btn-success btn-fill btn-sm"
+					        ng-click="apply();">
+						Save
+					</button>
+					<button class="btn btn-danger btn-fill btn-sm"
+					        ng-click="cancel();">
+						Cancel
+					</button>
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

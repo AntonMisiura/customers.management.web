@@ -52,6 +52,19 @@ namespace customers.management.web.Controllers
         }
 
         [HttpPost]
+        public IActionResult AddCustomerDetails([FromBody] CustomerDetails details)
+        {
+            //if (!_loginService.IsCurrentUserAdmin())
+            //{
+            //    return Forbid();
+            //}
+
+            _customerDetailsService.AddCustomerDetailses(details);
+
+            return Ok();
+        }
+
+        [HttpPost]
         public IActionResult SaveCustomerDetails([FromBody] CustomerDetails details)
         {
             //if (!_loginService.IsCurrentUserAdmin())

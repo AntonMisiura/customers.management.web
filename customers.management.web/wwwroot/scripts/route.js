@@ -20,6 +20,11 @@
 			{
 				templateUrl: "views/adminPage.html",
 				controller: "adminPageController"
+			})
+			.when("/addCustomer",
+			{
+				templateUrl: "views/addCustomerDetails.html",
+				controller: "addCustomerDetailsController"
 			});
 	}
 ]);

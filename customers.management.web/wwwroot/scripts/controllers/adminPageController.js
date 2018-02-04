@@ -1,4 +1,4 @@
-﻿Application.controller("adminPageController", function ($scope, $http) {
+﻿Application.controller("adminPageController", function ($scope, $http, $location) {
 	$scope.selectedCustomerId = "";
 	$scope.show = false;
 	$scope.customers = [];
@@ -6,16 +6,11 @@
 	$scope.departments = [];
 	$scope.users = [];
 
-	$scope.editCust = false;
-	$scope.editUs = false;
-	$scope.editCont = false;
-	$scope.editDeps = false;
-	$scope.saveCustomerTrue = false;;
-
 	$scope.deletedUsers = [];
 	$scope.deletedContacts = [];
 	$scope.deletedDepartments = [];
 	$scope.addedCustomer = {};
+	$scope.customer = {};
 
 	$scope.types = [
 		{
@@ -52,6 +47,7 @@
 	$scope.getCustomerById = function () {
 		var url = "customerdetails/getcustomerdetailsbyid/" + $scope.selectedCustomerId;
 		$http.get(url).then(function successCallback(response) {
+			$scope.customer = response.data.customer;
 			$scope.contacts = response.data.contacts;
 			$scope.users = response.data.customer.users;
 			$scope.departments = response.data.departments;
@@ -85,51 +81,8 @@
 		}
 	};
 
-	$scope.saveCustomer = function () {
-		for (var i = 0; i < $scope.customers.length; i++) {
-			if ($scope.customers[i].customer.id === null) {
-				if ($scope.customers[i].customer.name !== null &&
-					$scope.customers[i].customer.address !== null &&
-					$scope.customers[i].customer.email !== null &&
-					$scope.customers[i].customer.phone !== null) {
-
-					$scope.addedCustomer = {
-						Id: null,
-						Name: $scope.customers[i].customer.name,
-						Address: $scope.customers[i].customer.address,
-						Email: $scope.customers[i].customer.email,
-						Phone: $scope.customers[i].customer.phone,
-						Comments: $scope.customers[i].customer.comments,
-						TypeId: $scope.customers[i].customer.typeId
-					};
-
-					var url = "customer/addcustomer";
-					$http.post(url, $scope.addedCustomer).then(function () {
-						$scope.initCustomers();
-						$scope.saveCustomerTrue = false;
-					}, function () {
-					});
-				} else {
-					alert("All fields are required except comments!");
-				}
-			}
-		}
-	};
-
 	$scope.addCustomer = function () {
-		var customer = {
-			customer: {
-				id: null, name: null, address: null,
-				email: null, phone: null,
-				comments: null
-			},
-			departments: null,
-			comments: null,
-			users: null
-		}
-		$scope.customers.unshift(customer);
-		console.log($scope.customers);
-		$scope.saveCustomerTrue = true;
+		$location.path("/addCustomer");
 	};
 
 	$scope.addContact = function () {
@@ -192,44 +145,11 @@
 		}
 	};
 
-	$scope.deleteCustomer = function (index, id) {
-		for (var i = 0; i < $scope.customers.length; i++) {
-			if (id === $scope.customers[i].customer.id) {
-				var url = "customer/deletecustomer/" + $scope.customers[i].customer.id;
-				$http.get(url).then(function successCallback() {
-					$scope.initCustomers();
-				}, function errorCallback() {
-				});
-				$scope.customers.splice(i, 1);
-			}
-			else if (id === null && index === i) {
-				$scope.customers.splice(index, i);
-			}
-		}
-	};
-
-	$scope.editCustomers = function () {
-		$scope.editCust = true;
-	};
-
-	$scope.editContacts = function () {
-		$scope.editCont = true;
-	};
-
-	$scope.editUsers = function () {
-		$scope.editUs = true;
-	};
-
-	$scope.editDepartments = function () {
-		$scope.editDeps = true;
+	$scope.deleteCustomer = function (id) {
+		
 	};
 
 	$scope.cancel = function () {
-		$scope.editCust = false;
-		$scope.editCont = false;
-		$scope.editUs = false;
-		$scope.editDeps = false;
-
 		$scope.findAndRemoveAdded($scope.users);
 		$scope.findAndRemoveAdded($scope.contacts);
 		$scope.findAndRemoveAdded($scope.customers);
