@@ -1,4 +1,5 @@
-﻿using customers.management.core.Contracts;
+﻿using System;
+using customers.management.core.Contracts;
 using customers.management.core.dto;
 using Microsoft.AspNetCore.Mvc;
 
@@ -59,9 +60,16 @@ namespace customers.management.web.Controllers
             //    return Forbid();
             //}
 
-            _customerDetailsService.AddCustomerDetailses(details);
+            if (details != null && ModelState.IsValid)
+            {
+                _customerDetailsService.AddCustomerDetailses(details);
 
-            return Ok();
+                return Ok();
+            }
+            else
+            {
+                throw new ArgumentNullException();
+            }
         }
 
         [HttpPost]
@@ -72,9 +80,16 @@ namespace customers.management.web.Controllers
             //    return Forbid();
             //}
 
-            _customerDetailsService.SaveCustomerDetails(details);
+            if (details != null && ModelState.IsValid)
+            {
+                _customerDetailsService.SaveCustomerDetails(details);
 
-            return Ok();
+                return Ok();
+            }
+            else
+            {
+                throw new ArgumentNullException();
+            }
         }
 
         [HttpPost]
@@ -85,9 +100,16 @@ namespace customers.management.web.Controllers
             //    return Forbid();
             //}
 
-            _customerDetailsService.DeleteCustomerDetails(details);
+            if (details != null && ModelState.IsValid)
+            {
+                _customerDetailsService.DeleteCustomerDetails(details);
 
-            return Ok();
+                return Ok();
+            }
+            else
+            {
+                throw new ArgumentNullException();
+            }
         }
     }
 }

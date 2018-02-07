@@ -101,24 +101,24 @@
 		$location.path("/adminPage");
 	};
 
+
+	$scope.customerDetailsToAdd = {};
+
 	$scope.apply = function () {
 		var customer = {};
 
 		if ($scope.selectedTypeId === "1") {
 			customer = {
-				id: null,
 				name: $scope.custName,
 				address: $scope.custAddress,
 				email: $scope.custEmail,
 				phone: $scope.custPhone,
 				comments: $scope.custComments,
-				typeId: $scope.selectedTypeId,
-				numberOfSchool: $scope.custSchoolNumber
+				typeId: $scope.selectedTypeId
 			};
 		}
 		else if ($scope.selectedTypeId === "2") {
 			customer = {
-				id: null,
 				name: $scope.custName,
 				address: $scope.custAddress,
 				email: $scope.custEmail,
@@ -128,7 +128,11 @@
 			};
 		}
 
-		var customerDetailsToAdd = {
+		$scope.idsToNull($scope.addedUsers);
+		$scope.idsToNull($scope.addedContacts);
+		$scope.idsToNull($scope.addedDepartments);
+
+		$scope.customerDetailsToAdd = {
 			Customer: customer,
 			Departments: $scope.addedDepartments,
 			Users: $scope.addedUsers,
@@ -137,9 +141,15 @@
 
 
 		var addurl = "customerdetails/addcustomerdetails";
-		$http.post(addurl, customerDetailsToAdd).then(function () {
+		$http.post(addurl, $scope.customerDetailsToAdd).then(function () {
 			$scope.cancel();
 		}, function () {
 		});
+	};
+
+	$scope.idsToNull = function(list) {
+		for (var i = 0; i < list.length; i++) {
+			list[i].id = null;
+		}
 	};
 });
