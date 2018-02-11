@@ -19,7 +19,7 @@ namespace customers.management.impl.EF.Services
             {
                 foreach (var dep in departments)
                 {
-                    if (dep.Id == null)
+                    if (dep.Id == 0)
                     {
                         _departmentRepository.Add(dep);
                     }
@@ -39,7 +39,7 @@ namespace customers.management.impl.EF.Services
             {
                 foreach (var dep in departments)
                 {
-                    if (dep.Id != null) _departmentRepository.Delete((int)dep.Id);
+                    _departmentRepository.Delete(dep.Id);
                 }
 
                 _departmentRepository.Save();

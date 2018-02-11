@@ -43,6 +43,19 @@ namespace customers.management.impl.EF.Services
                 try
                 {
                     _customerService.AddCustomer(customerDetails.Customer);
+
+                    var customerId = customerDetails.Customer.Id;
+
+                    foreach (var contact in customerDetails.Contacts)
+                    {
+                        contact.CustomerId = customerId;
+                    }
+
+                    foreach (var user in customerDetails.Users)
+                    {
+                        user.CustomerId = customerId;
+                    }
+                    
                     _contactService.SaveContacts(customerDetails.Contacts);
 
                     _departmentService.SaveDepartments(customerDetails.Departments);
@@ -70,8 +83,7 @@ namespace customers.management.impl.EF.Services
 
             foreach (var user in _userService.GetUsersByCustomerId(id))
             {
-                if (user.Department.Id != null)
-                    user.Department.Manager = _managerRepository.GetByDepartmentId((int)user.Department.Id);
+                user.Department.Manager = _managerRepository.GetByDepartmentId(user.Department.Id);
 
                 departments.Add(user.Department);
             }

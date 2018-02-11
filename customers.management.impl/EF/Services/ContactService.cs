@@ -24,7 +24,7 @@ namespace customers.management.impl.EF.Services
             {
                 foreach (var contact in contacts)
                 {
-                    if (contact.Id == null)
+                    if (contact.Id == 0)
                     {
                         _contactRepository.Add(contact);
                     }
@@ -44,7 +44,7 @@ namespace customers.management.impl.EF.Services
             {
                 foreach (var contact in contacts)
                 {
-                    if (contact.Id != null) _contactRepository.Delete((int)contact.Id);
+                    _contactRepository.Delete((int)contact.Id);
                 }
 
                 _contactRepository.Save();

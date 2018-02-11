@@ -29,7 +29,7 @@ namespace customers.management.impl.EF.Services
             {
                 foreach (var user in users)
                 {
-                    if (user.Id == null)
+                    if (user.Id == 0)
                     {
                         _userRepository.Add(user);
                     }
@@ -50,7 +50,7 @@ namespace customers.management.impl.EF.Services
             {
                 foreach (var user in users)
                 {
-                    if (user.Id != null) _userRepository.Delete((int)user.Id);
+                    _userRepository.Delete(user.Id);
                 }
 
                 _userRepository.Save();

@@ -34,15 +34,15 @@
 
 	$scope.addContact = function () {
 		$scope.addedContacts.unshift({
-			id: null, name: null, role: null,
-			phone: null, customerId: null
+			name: null, role: null,
+			phone: null
 		});
 		console.log($scope.addedContacts);
 	};
 
 	$scope.addDepartment = function () {
 		$scope.addedDepartments.unshift({
-			id: "", name: null, address: null,
+			name: null, address: null,
 			manager: null
 		});
 		console.log($scope.addedDepartments);
@@ -50,10 +50,9 @@
 
 	$scope.addUser = function () {
 		$scope.addedUsers.unshift({
-			id: "", name: null, email: null,
+			name: null, email: null,
 			mobile: null, userName: null,
-			password: null, department: null,
-			customerId: null
+			password: null, department: null
 		});
 		console.log($scope.addedUsers);
 	};
@@ -128,10 +127,6 @@
 			};
 		}
 
-		$scope.idsToNull($scope.addedUsers);
-		$scope.idsToNull($scope.addedContacts);
-		$scope.idsToNull($scope.addedDepartments);
-
 		$scope.customerDetailsToAdd = {
 			Customer: customer,
 			Departments: $scope.addedDepartments,
@@ -145,11 +140,5 @@
 			$scope.cancel();
 		}, function () {
 		});
-	};
-
-	$scope.idsToNull = function(list) {
-		for (var i = 0; i < list.length; i++) {
-			list[i].id = null;
-		}
 	};
 });

@@ -87,21 +87,21 @@
 
 	$scope.addContact = function () {
 		$scope.contacts.unshift({
-			id: null, name: null, role: null,
+			name: null, role: null,
 			phone: null, customerId: $scope.selectedCustomerId
 		});
 	};
 
 	$scope.addDepartment = function () {
 		$scope.departments.unshift({
-			id: null, name: null, address: null,
+			name: null, address: null,
 			manager: null
 		});
 	};
 
 	$scope.addUser = function () {
 		$scope.users.unshift({
-			id: null, name: null, email: null,
+			name: null, email: null,
 			mobile: null, userName: null,
 			password: null, department: null,
 			customerId: $scope.selectedCustomerId
