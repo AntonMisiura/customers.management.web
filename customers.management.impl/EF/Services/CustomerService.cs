@@ -26,16 +26,19 @@ namespace customers.management.impl.EF.Services
         public void AddCustomer(Customer customer)
         {
             _customerRepository.Add(customer);
+            _customerRepository.Save();
         }
 
         public void EditCustomer(Customer customer)
         {
             _customerRepository.Edit(customer);
+            _customerRepository.Save();
         }
 
         public void DeleteCustomer(int id)
         {
             _customerRepository.Delete(id);
+            _customerRepository.Save();
         }
     }
 }

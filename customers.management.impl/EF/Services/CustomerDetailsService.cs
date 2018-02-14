@@ -79,6 +79,7 @@ namespace customers.management.impl.EF.Services
 
         public CustomerDetails GetCustomerDetailsById(int id)
         {
+            //TODO: need to fix, if user have no department then i cant get departments for customer
             var departments = new HashSet<Department>();
 
             foreach (var user in _userService.GetUsersByCustomerId(id))

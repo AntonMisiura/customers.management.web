@@ -127,6 +127,9 @@
 			};
 		}
 
+		$scope.checkForManagers();
+		$scope.checkForDepartments();
+
 		$scope.customerDetailsToAdd = {
 			Customer: customer,
 			Departments: $scope.addedDepartments,
@@ -134,11 +137,34 @@
 			Contacts: $scope.addedContacts
 		};
 
-
+		//TODO: value user.dep cannot be null
+		//TODO: and value dep.manager cannot be null
+		//TODO: need to fix it
 		var addurl = "customerdetails/addcustomerdetails";
 		$http.post(addurl, $scope.customerDetailsToAdd).then(function () {
 			$scope.cancel();
 		}, function () {
 		});
+	};
+
+
+	$scope.checkForManagers = function() {
+		for (var i = 0; i < $scope.addedDepartments.length; i++) {
+			if ($scope.addedDepartments[i].manager === null ||
+				$scope.addedDepartments[i].manager.userId === "" ||
+				$scope.addedDepartments[i].manager.userId === null) {
+				$scope.addedDepartments[i].manager = null;
+			}
+		}
+	};
+
+	$scope.checkForDepartments = function () {
+		for (var i = 0; i < $scope.addedUsers.length; i++) {
+			if ($scope.addedUsers[i].department === null ||
+				$scope.addedUsers[i].department.id === "" ||
+				$scope.addedUsers[i].department.id === null) {
+				$scope.addedUsers[i].department = null;
+			}
+		}
 	};
 });
